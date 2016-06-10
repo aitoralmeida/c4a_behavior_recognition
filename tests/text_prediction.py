@@ -5,11 +5,11 @@ Created on Fri Jun 10 11:24:51 2016
 @author: aitor
 """
 
-#from keras.models import Sequential
-#from keras.layers.recurrent import LSTM, GRU
-#from keras.layers.core import Dense, Dropout, Activation
+from keras.models import Sequential
+from keras.layers.recurrent import LSTM, GRU
+from keras.layers.core import Dense, Dropout, Activation
 
-WINDOW_SIZE = 10
+WINDOW_SIZE = 1
 TRAIN_PER = 0.8
 
 # Create the X and Y secuence vectors based on a window size
@@ -24,7 +24,8 @@ def create_X_Y(samples):
     for i in range(len(samples)):
         if i + WINDOW_SIZE >= len(samples):
             break
-        X_sample = samples[i:i+WINDOW_SIZE]
+#        X_sample = samples[i:i+WINDOW_SIZE]
+        X_sample = samples[i]
         Y_sample = samples[i+WINDOW_SIZE]
         X.append(X_sample)
         Y.append(Y_sample)
@@ -57,11 +58,20 @@ limit = int(TRAIN_PER * len(vectorized_text))
 training = vectorized_text[:limit]
 evaluation = vectorized_text[limit:]
 X_train, Y_train = create_X_Y(training)
+print 'Training sets lenght:', len(X_train), len(Y_train)
 X_eval, Y_eval = create_X_Y(evaluation)
+print 'Evaluation sets lenght:', len(X_eval), len(Y_eval)
 
-## Create the model
-#model = Sequential()
-#model.add(LSTM(32, input_shape=(WINDOW_SIZE, len(feature_list))))
-#model.add(Activation('softmax'))
-#
-#model.compile(optimizer='adam', loss='categorical_crossentropy')
+# Create the model
+print 'Creating model...'
+model = Sequential()
+model.add(LSTM(32, input_shape=(WINDOW_SIZE, len(feature_list))))
+model.add(Activation('softmax'))
+print 'Training model...'
+batch_size = 32
+model.compile(optimizer='adam', loss='categorical_crossentropy')
+model.fit(X_train, Y_train, nb_epoch=2, batch_size=batch_size)
+print 'Evaluating model...'
+score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
+print('Test score:', score)
+print('Test accuracy:', acc)
