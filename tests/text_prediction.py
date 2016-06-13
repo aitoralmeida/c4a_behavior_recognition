@@ -13,6 +13,7 @@ import numpy as np
 
 WINDOW_SIZE = 1
 TRAIN_PER = 0.8
+FEATURES = []
 
 # Create the X and Y secuence vectors based on a window size
 # E.G:
@@ -32,8 +33,26 @@ def create_X_Y(samples):
         X.append(X_sample)
         Y.append(Y_sample)
     return X, Y
-
-
+    
+def encode_char(char):
+    char_repr = [0] * len(FEATURES)
+    pos = FEATURES.index(char)
+    char_repr[pos] = 1
+    return char_repr
+    
+def decode_char(char_repr):
+    pos = char_repr.index(1)
+    char = FEATURES[pos]
+    return char
+    
+def generate_text(model, number_of_chars = 2000, initial_char='\n'):
+    generated_text = ''
+    encoded_char = np.array([encode_char(initial_char)])
+    for i in range(number_of_chars):
+        result = model.predict(encoded_char, batch_size=1)
+        generated_text += decode_char(result[0])
+        encoded_char = result
+    
 
 # *********Create the training and test data
 print 'Creating test data...'
@@ -47,13 +66,12 @@ chars = set()
 for char in text:
     chars.add(char)
 feature_list = list(chars)
+FEATURES = feature_list
 # Transform the chars to feature_list vectors. shape = [len(feature_list)] with
 # a 1 on the pos of the char in feature_list
 vectorized_text = []
 for char in text:
-    char_repr = [0] * len(feature_list)
-    pos = feature_list.index(char)
-    char_repr[pos] = 1
+    char_repr = encode_char(char)
     vectorized_text.append(char_repr)
 # create the training and text X and Y groups. 
 limit = int(TRAIN_PER * len(vectorized_text))
@@ -86,8 +104,10 @@ print 'Training model...'
 batch_size = 10
 model.compile(optimizer='adam', loss='categorical_crossentropy')
 print X_train.shape, Y_train.shape
-model.fit(X_train, Y_train, nb_epoch=2, batch_size=batch_size)
-print 'Evaluating model...'
-score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
-print('Test score:', score)
-print('Test accuracy:', acc)
+model.fit(X_train, Y_train, nb_epoch=1, batch_size=batch_size)
+res = model.predict(np.array([encode_char('a')]), batch_size=1)
+print res
+#print 'Evaluating model...'
+#score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
+#print('Test score:', score)
+#print('Test accuracy:', acc)
