@@ -45,14 +45,23 @@ def decode_char(char_repr):
     char = FEATURES[pos]
     return char
     
+def get_most_probable(result):
+    m = max(result)
+    pos = [i for i, j in enumerate(result) if j == m]
+    if len(pos) > 1:
+        print 'Two probable values, picking only the first one'
+    char_repr = [0] * len(FEATURES)
+    char_repr[pos[0]] = 1
+    return char_repr
+    
+    
 def generate_text(model, number_of_chars = 2000, initial_char='\n'):
     generated_text = ''
     encoded_char = np.array([encode_char(initial_char)])
     for i in range(number_of_chars):
         result = model.predict(encoded_char, batch_size=1)
         generated_text += decode_char(result[0])
-        encoded_char = result
-    
+        encoded_char = result    
 
 # *********Create the training and test data
 print 'Creating test data...'
@@ -87,8 +96,8 @@ print 'Evaluation sets lenght:', len(X_eval), len(Y_eval)
 print 'Sample lenghts train:', set([len(x) for x in X_eval]),set([len(x) for x in Y_eval])
 X_train = np.array(X_train)
 Y_train = np.array(Y_train)
-X_eval = np.array(X_eval)
-Y_eval = np.array(Y_eval)
+#X_eval = np.array(X_eval)
+#Y_eval = np.array(Y_eval)
 print 'X_train shape:', X_train.shape
 print 'Y_train shape:', Y_train.shape
 
@@ -97,6 +106,7 @@ print 'Y_train shape:', Y_train.shape
 # Create the model (WINDOW_SIZE, len(feature_list))
 print 'Creating model...'
 model = Sequential()
+# This works
 model.add(Embedding(X_train.shape[0], len(feature_list), input_length=len(feature_list)))
 model.add(LSTM(len(feature_list))) 
 model.add(Activation('softmax'))
@@ -105,8 +115,15 @@ batch_size = 10
 model.compile(optimizer='adam', loss='categorical_crossentropy')
 print X_train.shape, Y_train.shape
 model.fit(X_train, Y_train, nb_epoch=1, batch_size=batch_size)
-res = model.predict(np.array([encode_char('a')]), batch_size=1)
-print res
+print 'Model trained'
+print 'Creating input data...'
+char_repr = encode_char('a')
+input_data = np.array([])
+print 'Predicting...'
+res = model.predict(input_data, batch_size=1)
+print 'Prediction:', res
+rep = get_most_probable(res[0])
+print 'Char:', decode_char(rep)
 #print 'Evaluating model...'
 #score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
 #print('Test score:', score)
