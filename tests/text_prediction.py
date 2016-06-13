@@ -8,6 +8,8 @@ Created on Fri Jun 10 11:24:51 2016
 from keras.models import Sequential
 from keras.layers.recurrent import LSTM, GRU
 from keras.layers.core import Dense, Dropout, Activation
+from keras.layers.embeddings import Embedding
+import numpy as np
 
 WINDOW_SIZE = 1
 TRAIN_PER = 0.8
@@ -58,18 +60,32 @@ limit = int(TRAIN_PER * len(vectorized_text))
 training = vectorized_text[:limit]
 evaluation = vectorized_text[limit:]
 X_train, Y_train = create_X_Y(training)
+print 'Total samples training:', len(training)
+print 'Total samples evaluation:', len(evaluation)
 print 'Training sets lenght:', len(X_train), len(Y_train)
+print 'Sample lenghts train:', set([len(x) for x in X_train]),set([len(x) for x in Y_train])
 X_eval, Y_eval = create_X_Y(evaluation)
 print 'Evaluation sets lenght:', len(X_eval), len(Y_eval)
+print 'Sample lenghts train:', set([len(x) for x in X_eval]),set([len(x) for x in Y_eval])
+X_train = np.array(X_train)
+Y_train = np.array(Y_train)
+X_eval = np.array(X_eval)
+Y_eval = np.array(Y_eval)
+print 'X_train shape:', X_train.shape
+print 'Y_train shape:', Y_train.shape
 
-# Create the model
+
+
+# Create the model (WINDOW_SIZE, len(feature_list))
 print 'Creating model...'
 model = Sequential()
-model.add(LSTM(32, input_shape=(WINDOW_SIZE, len(feature_list))))
+model.add(Embedding(X_train.shape[0], len(feature_list), input_length=len(feature_list)))
+model.add(LSTM(len(feature_list))) 
 model.add(Activation('softmax'))
 print 'Training model...'
-batch_size = 32
+batch_size = 10
 model.compile(optimizer='adam', loss='categorical_crossentropy')
+print X_train.shape, Y_train.shape
 model.fit(X_train, Y_train, nb_epoch=2, batch_size=batch_size)
 print 'Evaluating model...'
 score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
