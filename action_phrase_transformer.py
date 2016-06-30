@@ -10,6 +10,7 @@ import csv
 
 DATASET = './dataset/action_dataset.csv'
 TEXT = './dataset/actions.text'
+BY_PERIOD = False
 
 print 'Starting...'
 with open(DATASET, 'rb') as csvfile:
@@ -26,6 +27,16 @@ with open(DATASET, 'rb') as csvfile:
         date = row[0]
         action = row[1]
         activity = row[2]
+        if BY_PERIOD:
+            hour = date.split(' ')[1].split(':')[0]
+            minute = date.split(' ')[1].split(':')[1]
+            if int(minute) > 30:
+                minute = '45'
+            else:
+                minute = '15'
+            period = hour+minute
+            action = action+period
+        
         if activity == current_activity:
             current_phrase.append(action)
         else:
