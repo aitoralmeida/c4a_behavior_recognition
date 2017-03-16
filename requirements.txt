@@ -3,7 +3,7 @@ bz2file==0.98
 epub==0.5.2
 gensim==0.12.4
 h5py==2.6.0
-Keras==1.0.4
+Keras==1.1.2
 numpy==1.11.0
 PyYAML==3.11
 requests==2.10.0
