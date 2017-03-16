@@ -1,0 +1,6251 @@
+[
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 9:33:41"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 9:33:47"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 9:36:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 9:37:20"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "25/02/2008 9:37:51"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "25/02/2008 9:37:55"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 9:37:58"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 9:49:27"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 9:49:31"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 9:49:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 9:49:53"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 9:49:58"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "25/02/2008 9:50:39"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 9:52:11"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "25/02/2008 9:53:22"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "25/02/2008 9:57:24"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 9:57:45"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 9:58:33"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 9:59:17"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 10:00:00"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 10:02:31"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 10:10:15"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 10:10:20"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "25/02/2008 10:19:28"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "25/02/2008 16:54:37"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 16:59:04"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "25/02/2008 16:59:14"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 16:59:48"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 17:00:33"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "25/02/2008 17:01:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 17:01:28"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 17:17:39"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 17:17:43"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 17:17:49"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "25/02/2008 17:19:38"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 17:22:48"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 17:55:01"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 17:55:06"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 17:55:08"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 17:55:12"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 17:55:15"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 17:55:27"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 17:55:42"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 18:31:58"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 18:32:08"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "25/02/2008 18:33:05"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 18:33:33"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 19:21:34"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 19:21:39"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 19:36:17"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "25/02/2008 19:40:27"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:40:47"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:41:00"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:41:03"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:41:09"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:41:23"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "25/02/2008 19:41:42"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 19:47:03"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 19:54:10"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 19:56:00"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 19:56:03"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 19:56:20"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "25/02/2008 19:56:25"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "25/02/2008 19:57:19"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:00:33"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:00:50"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:01:46"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 20:01:56"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 20:04:20"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 20:04:46"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:10:44"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:18:03"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 20:19:49"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:20:29"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:23:14"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 20:23:32"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 21:08:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 21:08:51"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "25/02/2008 21:45:40"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 21:51:32"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 21:51:37"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "25/02/2008 21:52:08"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 21:52:29"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "25/02/2008 21:54:46"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "25/02/2008 21:55:35"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 21:56:02"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "25/02/2008 21:59:02"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "25/02/2008 23:05:57"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "25/02/2008 23:06:02"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "25/02/2008 23:11:41"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "25/02/2008 23:19:08"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 23:21:24"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 23:22:31"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 23:28:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "25/02/2008 23:28:36"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "25/02/2008 23:30:12"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 23:31:53"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "25/02/2008 23:32:33"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 0:38:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:38:52"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 0:38:53"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:39:00"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:39:03"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:39:09"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:39:22"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "26/02/2008 0:39:25"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:39:46"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:40:22"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 0:40:58"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 0:46:22"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 0:46:27"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 3:13:41"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "26/02/2008 3:14:36"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 3:14:39"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 8:35:57"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 8:36:00"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 8:36:01"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 8:36:08"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 8:36:33"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 9:15:24"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "26/02/2008 9:15:29"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 9:15:40"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 9:18:44"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "26/02/2008 9:18:44"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "26/02/2008 9:26:45"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "26/02/2008 9:26:50"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "26/02/2008 9:27:16"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "26/02/2008 9:28:32"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "26/02/2008 9:28:58"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 9:48:12"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 9:48:16"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 9:58:04"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 9:58:09"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "26/02/2008 10:06:18"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "26/02/2008 20:31:35"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "26/02/2008 20:31:39"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 20:33:41"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 21:02:40"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "26/02/2008 21:03:49"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 21:03:52"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "26/02/2008 21:39:29"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "26/02/2008 21:39:34"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "26/02/2008 21:40:00"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "26/02/2008 21:40:03"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "26/02/2008 22:10:51"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "26/02/2008 22:10:55"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:56:02"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "26/02/2008 22:57:57"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:58:28"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:58:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:58:35"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:58:41"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:58:53"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:59:17"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 22:59:54"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "26/02/2008 23:00:30"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "26/02/2008 23:01:52"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "27/02/2008 5:29:23"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 5:29:30"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 5:30:14"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 5:30:16"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "27/02/2008 8:00:17"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "27/02/2008 8:00:22"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "27/02/2008 8:01:25"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "27/02/2008 8:01:31"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 8:01:52"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 8:01:57"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 8:13:30"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 8:13:35"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 8:15:37"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 8:15:40"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "27/02/2008 8:26:34"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "27/02/2008 8:26:38"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "27/02/2008 8:34:37"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "27/02/2008 18:58:31"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "27/02/2008 18:59:56"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:00:01"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "27/02/2008 19:02:11"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:02:26"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "27/02/2008 19:03:12"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:05:15"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:05:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:08:12"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "27/02/2008 19:09:03"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "27/02/2008 19:16:30"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "27/02/2008 19:19:54"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 19:19:59"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 20:35:28"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 20:35:56"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 20:35:58"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 23:03:26"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 23:05:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 23:05:31"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "27/02/2008 23:06:12"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "27/02/2008 23:06:29"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "27/02/2008 23:06:43"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "27/02/2008 23:06:52"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "27/02/2008 23:10:57"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "27/02/2008 23:16:52"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 23:20:18"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 23:20:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 23:23:09"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "27/02/2008 23:23:57"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "27/02/2008 23:26:19"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 23:37:01"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "27/02/2008 23:37:05"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "27/02/2008 23:37:09"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "27/02/2008 23:42:20"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 0:10:42"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 0:11:10"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 0:13:38"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 0:13:42"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 0:13:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 0:13:52"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 0:13:54"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 0:15:43"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 0:16:11"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "28/02/2008 0:20:18"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "28/02/2008 7:05:39"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "28/02/2008 7:05:44"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 7:06:31"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 7:07:16"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 7:07:19"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "28/02/2008 9:48:13"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "28/02/2008 9:48:19"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 9:48:57"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 9:49:28"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 9:49:29"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "28/02/2008 9:50:05"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:50:10"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:50:34"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:50:37"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:50:43"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:50:55"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:51:19"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 9:51:55"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "28/02/2008 9:51:57"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 10:35:28"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 10:37:42"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 10:37:46"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 10:38:03"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 10:46:21"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 10:46:25"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "28/02/2008 10:58:16"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "28/02/2008 18:34:21"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "28/02/2008 18:35:25"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "28/02/2008 18:35:39"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "28/02/2008 18:37:02"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "28/02/2008 18:37:18"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "28/02/2008 18:37:28"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 18:48:14"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 18:48:41"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 18:48:44"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 18:49:20"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 18:49:25"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "28/02/2008 18:53:38"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "28/02/2008 21:35:13"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 21:40:43"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 21:42:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 21:42:17"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 22:20:59"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "28/02/2008 22:21:04"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 22:22:43"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 22:22:48"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 23:23:18"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 23:23:36"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 23:23:39"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "28/02/2008 23:24:19"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "28/02/2008 23:24:22"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "28/02/2008 23:24:43"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "29/02/2008 8:03:19"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 8:03:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 8:03:25"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "29/02/2008 8:03:30"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 8:04:13"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "29/02/2008 10:20:48"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "29/02/2008 10:20:53"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "29/02/2008 10:22:49"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "29/02/2008 10:22:57"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 10:23:14"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 10:30:05"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "29/02/2008 10:30:30"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "29/02/2008 10:30:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 10:30:33"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "29/02/2008 10:30:59"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "29/02/2008 10:31:08"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "29/02/2008 10:38:10"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "29/02/2008 10:38:15"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 10:48:55"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 18:17:34"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 18:18:16"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 18:41:45"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 19:20:53"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 19:24:07"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "29/02/2008 19:24:56"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "29/02/2008 19:25:01"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "29/02/2008 19:41:43"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "29/02/2008 19:41:48"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 19:45:15"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "29/02/2008 19:46:09"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "29/02/2008 19:46:13"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 19:46:43"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "29/02/2008 19:47:00"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 19:47:21"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 19:49:37"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:10:23"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:13:08"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:37:59"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:43:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:43:43"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:43:50"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:44:02"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:45:08"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "29/02/2008 20:51:45"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "29/02/2008 20:51:53"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:52:02"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:52:04"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:52:13"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:52:25"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:52:49"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:53:26"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:55:11"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "29/02/2008 20:55:14"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:55:45"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "29/02/2008 20:58:41"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "29/02/2008 20:59:43"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 22:03:22"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "29/02/2008 22:03:47"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "02/03/2008 19:37:41"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "02/03/2008 20:32:17"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "02/03/2008 20:32:22"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "02/03/2008 20:32:32"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 20:37:08"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "02/03/2008 20:37:36"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 20:37:39"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "02/03/2008 20:38:51"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "02/03/2008 20:38:56"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "02/03/2008 20:38:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "02/03/2008 20:56:43"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "02/03/2008 20:56:48"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "02/03/2008 20:57:35"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "02/03/2008 21:00:33"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "02/03/2008 21:00:39"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "02/03/2008 21:00:47"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "02/03/2008 21:01:11"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Washingmachine", 
+    "date": "02/03/2008 21:49:38"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "02/03/2008 21:49:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 21:57:59"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 21:58:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 21:58:11"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "02/03/2008 21:58:25"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 22:03:14"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "02/03/2008 22:03:40"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "02/03/2008 22:03:43"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "03/03/2008 8:49:53"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "03/03/2008 8:49:58"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "03/03/2008 8:50:27"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "03/03/2008 8:52:07"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "03/03/2008 9:01:38"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "03/03/2008 9:01:44"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "03/03/2008 9:01:48"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "03/03/2008 9:02:00"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "03/03/2008 9:02:04"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "03/03/2008 9:02:07"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "03/03/2008 9:02:25"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "03/03/2008 9:17:23"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "03/03/2008 9:17:41"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "03/03/2008 9:31:35"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "03/03/2008 9:31:40"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "03/03/2008 9:45:05"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "04/03/2008 9:07:50"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 9:10:44"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 9:11:25"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "04/03/2008 9:11:26"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 9:11:30"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "04/03/2008 9:12:36"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "04/03/2008 9:16:17"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "04/03/2008 18:19:48"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 18:20:35"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "04/03/2008 18:22:54"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 18:22:58"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "04/03/2008 18:22:59"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Washingmachine", 
+    "date": "04/03/2008 18:24:15"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 18:29:10"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "04/03/2008 18:30:37"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "04/03/2008 23:43:27"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "04/03/2008 23:45:16"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Washingmachine", 
+    "date": "04/03/2008 23:46:18"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "04/03/2008 23:52:14"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "04/03/2008 23:52:28"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "04/03/2008 23:52:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 0:01:22"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 0:04:18"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 0:04:25"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 0:18:13"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 0:18:18"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 0:20:28"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 0:21:26"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 0:21:55"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "05/03/2008 5:58:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "05/03/2008 5:59:02"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 6:00:19"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 6:00:54"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 6:00:59"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "05/03/2008 9:27:42"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "05/03/2008 9:27:47"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 9:28:58"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 9:29:26"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 9:29:30"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "05/03/2008 9:29:59"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "05/03/2008 9:30:04"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "05/03/2008 9:30:27"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "05/03/2008 9:30:35"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "05/03/2008 9:30:47"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 9:45:47"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 9:45:52"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 9:45:58"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 9:53:08"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 9:53:13"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "05/03/2008 10:12:01"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "05/03/2008 19:48:30"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "05/03/2008 19:52:44"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "05/03/2008 19:55:15"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "05/03/2008 19:55:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 20:13:24"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 20:14:21"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 20:14:29"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "05/03/2008 20:15:06"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "05/03/2008 20:15:19"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "05/03/2008 20:20:02"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "05/03/2008 20:20:13"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "05/03/2008 20:20:28"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "05/03/2008 20:20:34"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "05/03/2008 20:23:08"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 22:58:02"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 23:07:05"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:08:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 23:08:14"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 23:30:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "05/03/2008 23:30:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "05/03/2008 23:32:51"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:11"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:12"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:15"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:22"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:34"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "05/03/2008 23:33:58"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "06/03/2008 4:37:34"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "06/03/2008 4:37:39"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 4:38:06"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 4:38:48"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "06/03/2008 8:38:53"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "06/03/2008 8:38:58"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 8:39:37"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 8:40:11"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 9:04:14"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:04:35"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:04:51"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:04:54"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:05:00"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 9:05:01"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:05:23"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "06/03/2008 9:07:19"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 9:07:26"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "06/03/2008 9:07:51"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 9:09:09"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "06/03/2008 9:09:28"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 9:09:58"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 9:38:53"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 9:40:02"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 9:42:24"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 9:42:31"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 9:42:41"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 10:23:22"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 10:23:27"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 10:30:14"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 10:30:18"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "06/03/2008 10:38:08"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "06/03/2008 17:41:12"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 17:46:05"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 17:46:24"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 18:52:49"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 18:53:44"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 18:53:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 18:53:48"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 18:54:15"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "06/03/2008 18:54:40"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 19:00:45"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:01:00"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:01:50"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 19:02:43"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "06/03/2008 19:05:02"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:08:13"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 19:10:47"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 19:11:03"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 19:15:18"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:21:42"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:25:19"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 19:35:30"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 19:40:05"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 19:40:18"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "06/03/2008 19:53:38"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "06/03/2008 19:53:44"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 19:54:35"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:54:46"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 19:55:20"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 19:55:55"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:56:53"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 19:56:59"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 19:57:30"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 19:57:33"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 19:57:40"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "06/03/2008 19:57:41"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "06/03/2008 19:59:43"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:00:14"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "06/03/2008 20:05:18"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "06/03/2008 20:11:33"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:12:36"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:12:40"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:14:36"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 20:16:48"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 20:17:11"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:31:05"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:31:09"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:32:24"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "06/03/2008 20:33:04"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:34:43"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:34:48"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:35:11"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "06/03/2008 21:35:16"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:35:17"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:35:29"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "06/03/2008 21:37:18"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "06/03/2008 21:37:36"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "06/03/2008 21:37:39"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 22:44:19"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 22:46:37"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 22:46:39"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 22:46:41"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 22:47:13"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 23:14:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "06/03/2008 23:14:54"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 23:17:07"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 23:18:29"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "06/03/2008 23:18:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "06/03/2008 23:18:41"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "07/03/2008 6:59:18"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "07/03/2008 6:59:24"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "07/03/2008 6:59:56"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "07/03/2008 7:00:34"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "07/03/2008 8:38:55"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "07/03/2008 8:38:59"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "07/03/2008 8:44:11"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "07/03/2008 8:45:00"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "07/03/2008 8:45:05"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "07/03/2008 8:49:16"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "07/03/2008 8:49:35"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "07/03/2008 8:49:47"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "07/03/2008 8:50:15"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "07/03/2008 8:50:21"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "07/03/2008 8:50:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "07/03/2008 8:51:07"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "07/03/2008 9:07:51"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "07/03/2008 9:15:39"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "07/03/2008 9:29:11"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "07/03/2008 9:29:15"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "08/03/2008 1:07:48"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:12:18"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:12:23"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:12:26"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:12:32"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:12:44"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:13:09"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:13:45"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 1:14:20"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "08/03/2008 1:14:22"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 3:21:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 3:21:45"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 3:21:57"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 3:22:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 3:22:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 3:23:05"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 3:23:08"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "08/03/2008 3:26:05"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "08/03/2008 8:20:20"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "08/03/2008 8:20:25"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:20:52"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 8:21:41"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:21:47"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "08/03/2008 8:22:01"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "08/03/2008 8:22:09"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "08/03/2008 8:22:48"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:33:10"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 8:35:35"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:35:36"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:35:37"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 8:35:40"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 8:35:45"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 8:35:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:35:48"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 8:46:00"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 10:00:29"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 10:00:34"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 10:01:35"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "08/03/2008 10:26:10"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "08/03/2008 10:26:14"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "08/03/2008 10:26:30"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "08/03/2008 10:26:36"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "08/03/2008 10:27:46"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "08/03/2008 10:27:50"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "08/03/2008 10:29:41"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "08/03/2008 10:56:24"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:08:13"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:08:18"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 11:12:29"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:12:33"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "08/03/2008 11:15:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "08/03/2008 11:15:06"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:15:42"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:22:57"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "08/03/2008 11:23:02"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "08/03/2008 11:36:02"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "08/03/2008 11:36:06"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 6:18:29"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "10/03/2008 6:19:34"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "10/03/2008 6:19:39"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 6:20:27"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 6:20:52"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 6:21:17"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "10/03/2008 8:33:33"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "10/03/2008 8:33:38"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 8:35:14"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 8:35:41"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 8:35:44"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 8:49:53"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 8:51:26"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 8:51:29"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 8:51:31"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 9:08:00"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "10/03/2008 9:08:05"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 9:25:57"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 9:26:02"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "10/03/2008 9:26:09"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "10/03/2008 9:26:14"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 9:26:27"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 9:26:51"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "10/03/2008 9:35:37"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "10/03/2008 9:35:42"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "10/03/2008 9:41:39"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 9:47:28"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 9:55:19"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 9:55:24"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 10:29:42"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 10:29:47"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 10:30:31"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "10/03/2008 19:23:47"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 19:25:35"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 19:33:39"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 19:33:45"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "10/03/2008 19:33:52"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 19:39:41"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 19:39:46"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "10/03/2008 19:40:55"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 19:44:43"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 19:50:34"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 19:50:39"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "10/03/2008 20:09:50"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "10/03/2008 20:09:55"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 20:11:03"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 20:11:08"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 20:11:15"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 20:11:28"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "10/03/2008 20:11:52"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 20:54:33"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 20:54:36"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 20:54:37"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 21:29:38"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 21:32:03"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "10/03/2008 21:32:35"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 21:32:48"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "10/03/2008 21:33:00"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "10/03/2008 21:33:05"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Dishwasher", 
+    "date": "10/03/2008 21:33:11"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "10/03/2008 21:38:16"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 22:03:49"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "10/03/2008 22:03:53"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "10/03/2008 22:03:59"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "11/03/2008 6:51:10"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "11/03/2008 6:51:14"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 6:52:49"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "11/03/2008 6:53:09"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "11/03/2008 8:43:38"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "11/03/2008 8:43:43"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 9:01:53"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 9:01:57"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 9:18:13"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 9:18:17"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 9:18:32"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 9:18:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 9:26:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 9:26:42"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "11/03/2008 9:33:50"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "11/03/2008 17:57:20"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "11/03/2008 17:58:11"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "11/03/2008 18:02:32"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "11/03/2008 18:12:24"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "11/03/2008 18:12:29"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "11/03/2008 18:16:05"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 18:16:09"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 18:29:01"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 18:30:35"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "11/03/2008 18:35:12"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "11/03/2008 18:35:16"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 20:38:37"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 20:38:42"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "11/03/2008 20:41:05"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 20:48:12"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 20:48:37"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 20:51:40"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 21:13:51"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "11/03/2008 21:14:07"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "11/03/2008 21:14:12"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 21:52:44"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "11/03/2008 21:52:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 21:53:15"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "11/03/2008 21:53:39"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "12/03/2008 3:04:52"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "12/03/2008 3:04:57"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "12/03/2008 3:05:36"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "12/03/2008 8:41:26"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "12/03/2008 8:42:49"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "12/03/2008 9:48:45"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "12/03/2008 9:48:50"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "12/03/2008 9:49:00"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "12/03/2008 9:49:44"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "12/03/2008 9:50:01"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "12/03/2008 9:51:25"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "12/03/2008 9:52:09"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "12/03/2008 9:59:31"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "12/03/2008 9:59:34"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "12/03/2008 11:04:11"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "12/03/2008 11:04:15"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "12/03/2008 11:04:15"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "12/03/2008 11:10:10"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "12/03/2008 12:21:19"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "12/03/2008 12:41:24"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "12/03/2008 12:46:23"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "12/03/2008 12:54:29"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "12/03/2008 12:55:35"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 0:52:47"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "13/03/2008 0:54:23"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "13/03/2008 0:54:42"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 0:55:28"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 0:56:06"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 1:18:41"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 1:20:44"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 1:20:50"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 1:23:58"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "13/03/2008 6:27:53"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "13/03/2008 6:27:59"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 6:28:42"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 6:30:12"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "13/03/2008 8:21:52"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "13/03/2008 8:21:58"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 8:22:20"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 8:22:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 8:22:57"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "13/03/2008 9:19:50"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 9:19:56"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 9:20:10"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 9:20:15"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 9:20:18"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "13/03/2008 9:20:19"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 9:41:13"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 9:47:44"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 9:47:49"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 9:57:47"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 17:50:08"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 17:53:15"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 17:54:07"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 17:54:09"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 17:54:13"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 18:39:18"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 18:39:23"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "13/03/2008 18:39:43"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "13/03/2008 18:40:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 18:54:56"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 18:55:01"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "13/03/2008 18:56:02"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "13/03/2008 19:00:50"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 19:07:25"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 19:07:30"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 20:26:57"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 20:27:02"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 20:31:27"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "13/03/2008 20:33:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "13/03/2008 20:33:05"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "13/03/2008 20:33:23"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 20:33:50"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 20:34:13"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "13/03/2008 20:34:24"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "14/03/2008 0:34:58"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 0:36:03"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 0:36:15"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 0:37:50"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 0:38:17"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 0:39:05"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 0:45:13"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 0:45:17"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 0:45:32"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 5:29:05"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 5:29:10"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 5:29:13"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 5:34:34"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 5:34:41"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 5:34:49"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 5:34:56"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 5:34:59"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 5:35:21"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 5:36:05"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 5:38:38"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 5:39:16"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 5:39:21"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 8:58:44"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "14/03/2008 8:58:49"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 8:59:04"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 9:12:53"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 9:13:55"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 9:14:01"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 9:14:06"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "14/03/2008 9:15:03"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "14/03/2008 9:15:18"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 9:15:28"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "14/03/2008 9:18:05"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 9:57:21"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 9:59:06"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 10:00:25"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 10:00:30"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 10:31:18"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 10:31:23"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 10:40:42"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 10:40:47"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "14/03/2008 10:49:25"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "14/03/2008 17:13:24"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 17:13:55"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "14/03/2008 17:14:11"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "14/03/2008 17:14:15"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 17:14:23"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "14/03/2008 17:15:20"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 17:20:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 17:20:40"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "14/03/2008 17:55:46"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "14/03/2008 22:54:57"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "14/03/2008 22:55:43"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 22:55:51"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "14/03/2008 22:56:02"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "14/03/2008 22:56:06"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "14/03/2008 22:57:51"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 23:04:25"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 23:05:07"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 23:05:10"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 23:57:17"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "14/03/2008 23:57:54"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "14/03/2008 23:57:57"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "14/03/2008 23:58:01"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 4:06:49"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 4:06:54"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 4:07:01"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 4:07:48"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 8:59:44"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 8:59:47"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 8:59:50"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 8:59:56"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 9:00:17"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 9:01:27"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 9:53:28"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "15/03/2008 9:53:34"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 10:07:09"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 10:09:02"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 10:09:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 10:09:05"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "15/03/2008 10:09:07"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 10:09:43"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 10:09:48"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "15/03/2008 10:10:01"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "15/03/2008 10:10:06"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 10:10:56"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 10:40:21"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 10:41:08"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 12:36:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 12:37:10"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "15/03/2008 13:41:37"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 13:41:44"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 13:41:51"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 13:43:07"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 13:56:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 13:56:06"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 14:05:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 14:05:08"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 14:30:34"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 14:31:51"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 14:31:55"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 14:31:56"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "15/03/2008 14:35:11"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "15/03/2008 14:45:07"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "15/03/2008 14:45:11"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 15:39:31"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 15:39:37"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "15/03/2008 15:42:02"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "15/03/2008 15:42:13"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "15/03/2008 15:43:30"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "15/03/2008 15:44:49"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "15/03/2008 15:45:27"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "15/03/2008 15:46:50"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "15/03/2008 16:10:13"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 18:02:04"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 18:02:09"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "GroceriesCupboard", 
+    "date": "15/03/2008 18:15:29"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "15/03/2008 18:15:34"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "15/03/2008 18:15:44"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 18:16:25"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "15/03/2008 18:26:06"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 18:26:33"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 18:38:51"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "15/03/2008 18:38:56"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "15/03/2008 18:55:17"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 18:55:23"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "15/03/2008 18:55:42"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 19:34:00"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 19:34:05"
+   }, 
+   {
+    "action": "Washingmachine", 
+    "date": "15/03/2008 19:34:30"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 19:44:07"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "15/03/2008 19:44:10"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 19:44:42"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "15/03/2008 19:44:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "15/03/2008 19:44:54"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "15/03/2008 19:45:29"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "17/03/2008 5:44:23"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "17/03/2008 5:44:28"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 5:44:30"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 5:45:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 5:45:06"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "17/03/2008 8:10:11"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "17/03/2008 8:10:16"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 8:30:09"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 8:30:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 8:31:05"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "17/03/2008 8:32:00"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "17/03/2008 8:32:09"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "17/03/2008 8:32:29"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "17/03/2008 8:32:50"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "17/03/2008 8:54:15"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "17/03/2008 8:54:20"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "17/03/2008 9:02:25"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "17/03/2008 9:02:30"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 9:09:34"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 9:12:10"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 9:13:52"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 9:13:55"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 9:14:02"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 9:14:05"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 9:14:11"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "17/03/2008 9:14:49"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "17/03/2008 9:16:30"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "17/03/2008 19:11:21"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 19:13:14"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 19:13:50"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 19:13:51"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 19:43:38"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 19:43:42"
+   }, 
+   {
+    "action": "Dishwasher", 
+    "date": "17/03/2008 19:43:54"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 19:49:31"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 19:50:36"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "17/03/2008 19:50:58"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "17/03/2008 19:53:11"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "17/03/2008 19:53:39"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "17/03/2008 20:02:42"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "17/03/2008 20:02:47"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 20:05:00"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 20:06:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 20:06:34"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareDinner", 
+  "actions": [
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 20:08:24"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 20:08:32"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 20:08:39"
+   }, 
+   {
+    "action": "PansCupboard", 
+    "date": "17/03/2008 20:09:01"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "17/03/2008 20:12:26"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "17/03/2008 20:17:08"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "Freezer", 
+    "date": "17/03/2008 20:38:34"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "17/03/2008 20:38:38"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "17/03/2008 21:33:38"
+   }
+  ]
+ }, 
+ {
+  "name": "GetDrink", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "17/03/2008 21:33:44"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "17/03/2008 21:33:48"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "17/03/2008 21:33:51"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 22:26:19"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "17/03/2008 22:27:03"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "17/03/2008 22:27:05"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 0:48:19"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 0:49:03"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 0:49:04"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 0:49:10"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "18/03/2008 0:49:10"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 0:52:34"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 0:52:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 6:22:43"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 6:22:48"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 6:23:18"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 6:23:49"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 6:23:55"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 7:48:23"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "18/03/2008 7:48:28"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 8:15:13"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 8:16:24"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 8:18:50"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 8:18:54"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 8:18:55"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 8:19:14"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "18/03/2008 8:19:16"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "18/03/2008 8:20:35"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "18/03/2008 8:20:42"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "18/03/2008 8:21:31"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "18/03/2008 8:21:37"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "18/03/2008 8:22:45"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "18/03/2008 8:22:49"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "18/03/2008 8:23:27"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "18/03/2008 8:39:43"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "18/03/2008 8:52:21"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "18/03/2008 8:52:25"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "18/03/2008 9:15:17"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "18/03/2008 18:00:11"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 18:07:18"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 18:07:21"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 18:08:09"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 18:21:40"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "18/03/2008 18:22:59"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "18/03/2008 18:23:35"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "18/03/2008 18:25:11"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "18/03/2008 23:39:18"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "18/03/2008 23:39:24"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 0:40:35"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 0:41:15"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 0:42:20"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "19/03/2008 7:50:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "19/03/2008 7:51:02"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 7:51:51"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 7:51:54"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 7:51:57"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "19/03/2008 8:43:19"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "19/03/2008 8:43:24"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "Fridge", 
+    "date": "19/03/2008 9:38:33"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "19/03/2008 9:38:44"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "19/03/2008 9:38:48"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "19/03/2008 9:39:00"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "19/03/2008 9:39:10"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "19/03/2008 9:39:19"
+   }, 
+   {
+    "action": "CupsCupboard", 
+    "date": "19/03/2008 9:39:24"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "19/03/2008 9:40:27"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 9:48:33"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "19/03/2008 9:49:01"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 9:49:04"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "19/03/2008 9:49:06"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 9:58:54"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 9:58:59"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "19/03/2008 10:09:11"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "19/03/2008 10:09:16"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "19/03/2008 17:15:12"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 17:19:55"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 17:21:57"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "19/03/2008 17:26:44"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "19/03/2008 20:19:40"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 20:46:23"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "19/03/2008 20:48:50"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 20:48:53"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "CupsCupboard", 
+    "date": "19/03/2008 21:19:56"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "19/03/2008 21:20:24"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:49:24"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "19/03/2008 21:51:29"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:51:32"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:51:36"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:51:39"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:51:46"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:51:58"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:52:22"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:52:58"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 21:53:01"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "19/03/2008 21:53:34"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "19/03/2008 21:54:34"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 0:34:38"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 0:34:42"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 0:35:10"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 0:35:39"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 0:35:43"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 0:35:44"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 6:57:51"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 6:57:55"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 6:57:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 6:58:15"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 6:58:31"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 6:58:33"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 8:31:02"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "20/03/2008 8:31:07"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 8:45:46"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 8:46:55"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 8:46:58"
+   }
+  ]
+ }, 
+ {
+  "name": "PrepareBreakfast", 
+  "actions": [
+   {
+    "action": "PlatesCupboard", 
+    "date": "20/03/2008 9:12:04"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "20/03/2008 9:12:11"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "20/03/2008 9:12:14"
+   }, 
+   {
+    "action": "PlatesCupboard", 
+    "date": "20/03/2008 9:12:26"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "20/03/2008 9:12:30"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "20/03/2008 9:12:40"
+   }, 
+   {
+    "action": "Microwave", 
+    "date": "20/03/2008 9:13:44"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "20/03/2008 9:14:18"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "20/03/2008 9:14:35"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "20/03/2008 9:14:58"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 9:42:47"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 9:42:52"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 9:43:22"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 9:49:49"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 9:49:54"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "20/03/2008 9:57:13"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "20/03/2008 22:49:21"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "20/03/2008 22:49:24"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 22:51:15"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 22:51:18"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 22:52:40"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 22:55:00"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 22:55:03"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 22:55:09"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 23:36:24"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 23:40:24"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 23:40:31"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 23:40:42"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 23:56:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 23:56:42"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 23:58:46"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 23:58:48"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "20/03/2008 23:59:15"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "20/03/2008 23:59:17"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "20/03/2008 23:59:27"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 0:00:11"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 3:49:47"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 3:49:54"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 3:49:58"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "21/03/2008 3:50:40"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 8:30:54"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 8:31:00"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "21/03/2008 8:31:25"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 8:31:28"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 9:04:21"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 9:04:26"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 9:13:25"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "21/03/2008 9:14:19"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 9:14:25"
+   }
+  ]
+ }, 
+ {
+  "name": "TakeShower", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 9:17:57"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 9:24:18"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 9:24:23"
+   }
+  ]
+ }, 
+ {
+  "name": "LeaveHouse", 
+  "actions": [
+   {
+    "action": "Frontdoor", 
+    "date": "21/03/2008 9:42:35"
+   }, 
+   {
+    "action": "Frontdoor", 
+    "date": "21/03/2008 15:50:16"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 15:52:04"
+   }, 
+   {
+    "action": "ToiletFlush", 
+    "date": "21/03/2008 15:52:54"
+   }, 
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 15:52:54"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 15:53:03"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 15:54:06"
+   }, 
+   {
+    "action": "GroceriesCupboard", 
+    "date": "21/03/2008 15:57:07"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "21/03/2008 15:57:52"
+   }
+  ]
+ }, 
+ {
+  "name": "GoToBed", 
+  "actions": [
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 17:03:54"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 17:06:52"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 17:06:57"
+   }, 
+   {
+    "action": "HallBedroomDoor", 
+    "date": "21/03/2008 18:05:09"
+   }
+  ]
+ }, 
+ {
+  "name": "UseToilet", 
+  "actions": [
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 18:24:31"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 18:24:38"
+   }, 
+   {
+    "action": "HallToiletDoor", 
+    "date": "21/03/2008 18:24:50"
+   }
+  ]
+ }, 
+ {
+  "name": "None", 
+  "actions": [
+   {
+    "action": "HallBathroomDoor", 
+    "date": "21/03/2008 18:25:15"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "21/03/2008 18:27:46"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "21/03/2008 18:27:57"
+   }, 
+   {
+    "action": "Fridge", 
+    "date": "21/03/2008 18:28:00"
+   }, 
+   {
+    "action": "Freezer", 
+    "date": "21/03/2008 18:28:19"
+   }
+  ]
+ }
+]
