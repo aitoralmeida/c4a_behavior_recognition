@@ -90,22 +90,17 @@ def process_csv(none=False):
     json.dump(list(activities_set), open(UNIQUE_ACTIVITIES, 'w'))
     json.dump(list(actions_set), open(UNIQUE_ACTIONS, 'w'))
     print 'Text file saved'
-    
-# Generates the text file from the csv taking into account the time periods
-def process_time_csv(none=True):
-    actions = ''    
-    activities_set = set()
-    actions_set = set()
+
+# Generates a CSV dataset with periods
+def transform_csv_to_periods():
     with open(DATASET, 'rb') as csvfile:
         with open(DATASET_ACTION_PERIODS, 'wb') as new_dataset:
-            print 'Processing:', DATASET
-            reader = csv.reader(csvfile, delimiter=DELIMITER)   
-            writer = csv.writer(new_dataset, delimiter=DELIMITER)
-            i = 0
-            for row in reader:
+              print 'Processing:', DATASET
+              reader = csv.reader(csvfile, delimiter=DELIMITER)   
+              writer = csv.writer(new_dataset, delimiter=DELIMITER)
+              i = 0
+              for row in reader:
                 i += 1
-                if i == 1:
-                    continue  
                 date = row[0]
                 instant = row[1]
                 sensor = row[2]
@@ -116,17 +111,37 @@ def process_time_csv(none=True):
                 action_period = action + '_' + str(period)
                 new_row = [date, instant, sensor, action_period, event, activity]
                 writer.writerow(new_row)
-                if none:
-                    actions += action_period + SEP
-                    activities_set.add(activity)      
-                    actions_set.add(action_period)
-                if activity != NONE and not none:
-                    actions += action_period + SEP
-                    activities_set.add(activity)
-                    actions_set.add(action_period)
-                if i % 10000 == 0:
-                    print '  -Actions processed:', i
-            print 'Total actions processed:', i
+    print 'Total actions processed:', i
+    
+# Generates the text file from the csv taking into account the time periods
+def process_time_csv(none=True):
+    transform_csv_to_periods()
+    actions = ''    
+    activities_set = set()
+    actions_set = set()
+    with open(DATASET_ACTION_PERIODS, 'rb') as csvfile:
+        print 'Processing:', DATASET
+        reader = csv.reader(csvfile, delimiter=DELIMITER)   
+        i = 0
+        for row in reader:
+            i += 1 
+            #date = row[0]
+            #instant = row[1]
+            #sensor = row[2]
+            action = row[3]
+            #event = row[4]
+            activity = row[5]
+            if none:
+                actions += action
+                activities_set.add(activity)      
+                actions_set.add(action)
+            if activity != NONE and not none:
+                actions += action
+                activities_set.add(activity)
+                actions_set.add(action)
+            if i % 10000 == 0:
+                print '  -Actions processed:', i
+        print 'Total actions processed:', i
     
     with open(ACTION_TIME_TEXT, 'w') as textfile: 
         textfile.write(actions)     
