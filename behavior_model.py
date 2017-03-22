@@ -27,14 +27,20 @@ DIR = './sensor2vec/kasteren_dataset/'
 # Dataset with vectors but without the action timestamps
 DATASET_CSV = DIR + 'base_kasteren_reduced.csv'
 DATASET_NO_TIME = DIR + 'dataset_no_time.json'
+# dataset with actions transformed with time periods
+DATASET_ACTION_PERIODS = DIR + 'kasteren_action_periods.csv'
 # List of unique activities in the dataset
 UNIQUE_ACTIVITIES = DIR + 'unique_activities.json'
 # List of unique actions in the dataset
 UNIQUE_ACTIONS = DIR + 'unique_actions.json'
+# List of unique actions in the dataset taking into account time periods
+UNIQUE_TIME_ACTIONS = DIR + 'unique_time_actions.json'
 # Action vectors
-ACTION_VECTORS = DIR + 'actions_vectors.json'
+#ACTION_VECTORS = DIR + 'actions_vectors.json'
 # Word2Vec model
 WORD2VEC_MODEL = DIR + 'actions.model'
+# Word2Vec model taking into account time periods
+WORD2VEC_TIME_MODEL = DIR + 'actions_time.model'
 
 #number of input actions for the model
 INPUT_ACTIONS = 5
@@ -43,6 +49,9 @@ ACTION_EMBEDDING_LENGTH = 50
 
 #best model in the training
 BEST_MODEL = 'best_model.hdf5'
+
+# if time is being taken into account
+TIME = True
 
 """
 Load the best model saved in the checkpoint callback
@@ -103,16 +112,23 @@ Output:
 def prepare_x_y(df, unique_actions):
     #recover all the actions in order.
     actions = df['action'].values
+#    print actions.tolist()
+#    print actions.tolist().index('HallBedroomDoor_1')
     # Use tokenizer to generate indices for every action
     # Very important to put lower=False, since the Word2Vec model
     # has the action names with some capital letters
     tokenizer = Tokenizer(lower=False)
-    tokenizer.fit_on_texts(actions)
+    tokenizer.fit_on_texts(actions.tolist())
     action_index = tokenizer.word_index  
+#    print action_index
     #translate actions to indexes
     actions_by_index = []
+    
+    print len(actions)
     for action in actions:
+#        print action
         actions_by_index.append(action_index[action])
+
     #Create the trainning sets of sequences with a lenght of INPUT_ACTIONS
     last_action = len(actions) - 1
     X = []
@@ -120,7 +136,7 @@ def prepare_x_y(df, unique_actions):
     for i in range(last_action-INPUT_ACTIONS):
         X.append(actions_by_index[i:i+INPUT_ACTIONS])
         #represent the target action as a onehot for the softmax
-        target_action = actions[i+INPUT_ACTIONS]
+        target_action = ''.join(i for i in actions[i+INPUT_ACTIONS] if not i.isdigit()) # remove the period
         target_action_onehot = np.zeros(len(unique_actions))
         target_action_onehot[unique_actions.index(target_action)] = 1.0
         y.append(target_action_onehot)
@@ -136,7 +152,10 @@ Output:
     
 """
 def create_embedding_matrix(tokenizer):
-    model = Word2Vec.load(WORD2VEC_MODEL)    
+    if TIME:
+        model = Word2Vec.load(WORD2VEC_TIME_MODEL)    
+    else:
+        model = Word2Vec.load(WORD2VEC_MODEL)    
     action_index = tokenizer.word_index
     embedding_matrix = np.zeros((len(action_index) + 1, ACTION_EMBEDDING_LENGTH))
     unknown_words = {}    
@@ -163,20 +182,16 @@ def main(argv):
     print 'Loading dataset...'
     sys.stdout.flush()
     #dataset of activities
-    df_dataset = pd.read_csv(DATASET_CSV, parse_dates=[[0, 1]], header=None, index_col=0, sep=' ')
+    if TIME:
+        DATASET = DATASET_ACTION_PERIODS
+    else:
+        DATASET = DATASET_CSV
+    df_dataset = pd.read_csv(DATASET, parse_dates=[[0, 1]], header=None, index_col=0, sep=' ')
     df_dataset.columns = ['sensor', 'action', 'event', 'activity']
     df_dataset.index.names = ["timestamp"]    
-    #Unique activities in the dataset
-    #unique_activities = json.load(open(UNIQUE_ACTIVITIES, 'r'))
-    #total_activities = len(unique_activities)
-    #Unique actions in the dataset
+    # we only need the actions without the period to calculate the onehot vector for y, because we are only predicting the actions
     unique_actions = json.load(open(UNIQUE_ACTIONS, 'r'))
     total_actions = len(unique_actions)
-    #action_vectors = json.load(open(ACTION_VECTORS, 'r'))       
-    # Generate the dict to transform activities to integer numbers
-    #activity_to_int = dict((c, i) for i, c in enumerate(unique_activities))
-    # Generate the dict to transform integer numbers to activities
-    #int_to_activity = dict((i, c) for i, c in enumerate(unique_activities))
     
     print '*' * 20
     print 'Preparing dataset...'
@@ -211,19 +226,20 @@ def main(argv):
     print 'Building model...'
     sys.stdout.flush()
     model = Sequential()
-    model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=False, name='Embedding'))
+    model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
     #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
-    model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))      
+    model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))  
+    
    
     model.add(Dense(1024, name = 'dense1'))
-    model.add(BatchNormalization(name = 'batch1'))
+#    model.add(BatchNormalization(name = 'batch1'))
     model.add(Activation('relu', name = 'relu1'))   
-    model.add(Dropout(0.4, name = 'drop1'))
+    model.add(Dropout(0.8, name = 'drop1'))    
     
-    model.add(Dense(512, name = 'dense2'))
-    model.add(BatchNormalization(name = 'batch2'))
+    model.add(Dense(1024, name = 'dense2'))
+#    model.add(BatchNormalization(name = 'batch1'))
     model.add(Activation('relu', name = 'relu2'))   
-  
+    model.add(Dropout(0.8, name = 'drop2'))    
     
     model.add(Dense(total_actions, name = 'dense_final'))
     model.add(Activation('softmax', name = 'softmax'))
@@ -235,9 +251,9 @@ def main(argv):
     print '*' * 20
     print 'Training model...'    
     sys.stdout.flush()
-    BATCH_SIZE = 32
+    BATCH_SIZE = 128
     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=200, validation_data=(X_test, y_test), shuffle=False, callbacks=[checkpoint])
+    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=False, callbacks=[checkpoint])
 
     print '*' * 20
     print 'Plotting history...'
