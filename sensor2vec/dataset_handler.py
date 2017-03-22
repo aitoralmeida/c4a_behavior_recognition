@@ -11,33 +11,34 @@ import json
 from gensim.models import Word2Vec
 import numpy
 
-
+#base directory
+BASE_DIR = './kasteren_dataset/'
 # Dataset generated with the synthetic generator
-DATASET_ACTION = 'action_dataset.csv'
+DATASET_ACTION = BASE_DIR + 'action_dataset.csv'
 # Kasteren dataset
-DATASET_KASTEREN = 'kasteren_dataset.csv'
+DATASET_KASTEREN = BASE_DIR + 'kasteren_dataset.csv'
 # Kasteren dataset reduced
-DATASET_KASTEREN_REDUCED = './kasteren_dataset/base_kasteren_reduced.csv'
+DATASET_KASTEREN_REDUCED = BASE_DIR + 'base_kasteren_reduced.csv'
 # Text file used to create the action vectors with word2vec
-ACTION_TEXT = 'actions.txt'
+ACTION_TEXT = BASE_DIR + 'actions.txt'
 # Text file used to create the action vectors including time with word2vec
-ACTION_TIME_TEXT = 'actions_time.txt'
+ACTION_TIME_TEXT = BASE_DIR + 'actions_time.txt'
 # List of unique activities in the dataset
-UNIQUE_ACTIVITIES = 'unique_activities.json'
+UNIQUE_ACTIVITIES = BASE_DIR + 'unique_activities.json'
 # List of unique actions in the dataset
-UNIQUE_ACTIONS = 'unique_actions.json'
+UNIQUE_ACTIONS = BASE_DIR + 'unique_actions.json'
 # List of unique actions in the dataset when using time periods
-UNIQUE_TIME_ACTIONS = 'unique_time_actions.json'
+UNIQUE_TIME_ACTIONS = BASE_DIR + 'unique_time_actions.json'
 # Word2vec model generated with gensim
-ACTIONS_MODEL = 'actions.model'
+ACTIONS_MODEL = BASE_DIR + 'actions.model'
 # Vector values for each action
-ACTIONS_VECTORS = 'actions_vectors.json'
+ACTIONS_VECTORS = BASE_DIR + 'actions_vectors.json'
 # File with the activities ordered
-ACTIVITIES_ORDERED = 'activities.json'
+ACTIVITIES_ORDERED = BASE_DIR + 'activities.json'
 # Dataset with vectors but without the action timestamps
-DATASET_NO_TIME = 'dataset_no_time.json'
+DATASET_NO_TIME = BASE_DIR + 'dataset_no_time.json'
 # Dataset with vectors but without the action timestamps, 2 channels
-DATASET_NO_TIME_2_CHANNELS = 'dataset_no_time_2_channels.json'
+DATASET_NO_TIME_2_CHANNELS = BASE_DIR + 'dataset_no_time_2_channels.json'
 
 # When there is no activity
 NONE = 'None'
