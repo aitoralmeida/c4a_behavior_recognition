@@ -29,7 +29,7 @@ if __name__ == '__main__':
         sys.exit(1)
     inp, outp1, outp2 = sys.argv[1:4]
     # avg activity lenght = 3.69590167482
-    model = Word2Vec(LineSentence(inp), size=50, window=5, min_count=3,
+    model = Word2Vec(LineSentence(inp), size=50, window=5, min_count=0,
             workers=multiprocessing.cpu_count())
  
     # trim unneeded model memory = use(much) less RAM
