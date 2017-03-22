@@ -51,6 +51,9 @@ ACTIVITY_MAX_LENGHT = 32
 # word2vec dimensions for an action
 ACTION_MAX_LENGHT = 50
 
+# period duration
+PERIOD_DURATION = 30
+
 DATASET = DATASET_KASTEREN_REDUCED
 
 if DATASET == DATASET_KASTEREN_REDUCED:
@@ -106,7 +109,7 @@ def transform_csv_to_periods():
                 sensor = row[2]
                 action = row[3]
                 event = row[4]
-                period = instant_to_period(instant, 30)
+                period = instant_to_period(instant, PERIOD_DURATION)
                 activity = row[5]
                 action_period = action + str(period)
                 new_row = [date, instant, sensor, action_period, event, activity]
