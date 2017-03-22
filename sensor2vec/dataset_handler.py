@@ -16,12 +16,18 @@ import numpy
 DATASET_ACTION = 'action_dataset.csv'
 # Kasteren dataset
 DATASET_KASTEREN = 'kasteren_dataset.csv'
+# Kasteren dataset reduced
+DATASET_KASTEREN_REDUCED = 'base_kasteren_reduced.csv'
 # Text file used to create the action vectors with word2vec
 ACTION_TEXT = 'actions.txt'
+# Text file used to create the action vectors including time with word2vec
+ACTION_TIME_TEXT = 'actions_time.txt'
 # List of unique activities in the dataset
 UNIQUE_ACTIVITIES = 'unique_activities.json'
 # List of unique actions in the dataset
 UNIQUE_ACTIONS = 'unique_actions.json'
+# List of unique actions in the dataset when using time periods
+UNIQUE_TIME_ACTIONS = 'unique_time_actions.json'
 # Word2vec model generated with gensim
 ACTIONS_MODEL = 'actions.model'
 # Vector values for each action
@@ -42,14 +48,14 @@ ACTIVITY_MAX_LENGHT = 32
 # word2vec dimensions for an action
 ACTION_MAX_LENGHT = 50
 
-DATASET = DATASET_KASTEREN
+DATASET = DATASET_KASTEREN_REDUCED
 
 # Generates the text file from the csv
 def process_csv(none=False):
     actions = ''    
     activities_set = set()
     actions_set = set()
-    with open(DATASET, 'rb') as csvfile:
+    with open(DATASET, 'rb') as csvfile: # This only works with DATASET_KASTEREN now
         print 'Processing:', DATASET
         reader = csv.reader(csvfile)        
         i = 0
@@ -60,6 +66,7 @@ def process_csv(none=False):
             action = row[1]
             activity = row[2]
             if none:
+                actions += action + SEP
                 activities_set.add(activity)      
                 actions_set.add(action)
             if activity != NONE and not none:
@@ -75,6 +82,50 @@ def process_csv(none=False):
     json.dump(list(activities_set), open(UNIQUE_ACTIVITIES, 'w'))
     json.dump(list(actions_set), open(UNIQUE_ACTIONS, 'w'))
     print 'Text file saved'
+    
+# Generates the text file from the csv taking into account the time periods
+def process_time_csv(none=True):
+    actions = ''    
+    activities_set = set()
+    actions_set = set()
+    with open(DATASET, 'rb') as csvfile:
+        print 'Processing:', DATASET
+        reader = csv.reader(csvfile)        
+        i = 0
+        for row in reader:
+            i += 1
+            if i == 1:
+                continue  
+            instant = row[1]
+            action = row[2]
+            period = instant_to_period(instant, 30)
+            activity = row[5]
+            if none:
+                actions += action + '_' + str(period) + SEP
+                activities_set.add(activity)      
+                actions_set.add(action)
+            if activity != NONE and not none:
+                actions += action + '_' + str(period) + SEP
+                activities_set.add(activity)
+                actions_set.add(action)
+            if i % 10000 == 0:
+                print '  -Actions processed:', i
+        print 'Total actions processed:', i
+    
+    with open(ACTION_TIME_TEXT, 'w') as textfile: 
+        textfile.write(actions)     
+    json.dump(list(activities_set), open(UNIQUE_ACTIVITIES, 'w'))
+    json.dump(list(actions_set), open(UNIQUE_TIME_ACTIONS, 'w'))
+    print 'Text file saved'
+    
+# Transforms a time instant (e.g. 09:33:41) to a period
+def instant_to_period(instant, period_mins=30):
+    hours = int(instant.split(':')[0])
+    mins = int(instant.split(':')[1])
+    current_minutes = ((hours * 60.0) + mins) 
+    current_period = int(round(current_minutes/period_mins))
+    return current_period
+            
 
 # creates a json file with the action vectors from the gensim model
 def create_vector_file():
@@ -205,11 +256,12 @@ def create_vector_dataset_no_time_2_channels():
 if __name__ == '__main__':
     print 'Start...'
 #    process_csv(True)
+    process_time_csv(none=True)
 #    create_vector_file()
 #    order_activities(True)
 #    calculate_statistics()
 #    create_vector_dataset_no_time()
-    create_vector_dataset_no_time_2_channels()
+#    create_vector_dataset_no_time_2_channels()
     print 'Fin'
 
 
