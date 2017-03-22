@@ -17,7 +17,7 @@ DATASET_ACTION = 'action_dataset.csv'
 # Kasteren dataset
 DATASET_KASTEREN = 'kasteren_dataset.csv'
 # Kasteren dataset reduced
-DATASET_KASTEREN_REDUCED = 'base_kasteren_reduced.csv'
+DATASET_KASTEREN_REDUCED = './kasteren_dataset/base_kasteren_reduced.csv'
 # Text file used to create the action vectors with word2vec
 ACTION_TEXT = 'actions.txt'
 # Text file used to create the action vectors including time with word2vec
@@ -50,6 +50,11 @@ ACTION_MAX_LENGHT = 50
 
 DATASET = DATASET_KASTEREN_REDUCED
 
+if DATASET == DATASET_KASTEREN_REDUCED:
+    DELIMITER = ' '
+elif DATASET == DATASET_KASTEREN:
+    DELIMITER = ','
+
 # Generates the text file from the csv
 def process_csv(none=False):
     actions = ''    
@@ -57,7 +62,7 @@ def process_csv(none=False):
     actions_set = set()
     with open(DATASET, 'rb') as csvfile: # This only works with DATASET_KASTEREN now
         print 'Processing:', DATASET
-        reader = csv.reader(csvfile)        
+        reader = csv.reader(csvfile, delimiter=DELIMITER)        
         i = 0
         for row in reader:
             i += 1
@@ -90,7 +95,7 @@ def process_time_csv(none=True):
     actions_set = set()
     with open(DATASET, 'rb') as csvfile:
         print 'Processing:', DATASET
-        reader = csv.reader(csvfile)        
+        reader = csv.reader(csvfile, delimiter=DELIMITER)        
         i = 0
         for row in reader:
             i += 1
