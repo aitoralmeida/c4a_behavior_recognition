@@ -106,14 +106,15 @@ def process_time_csv(none=True):
             action = row[2]
             period = instant_to_period(instant, 30)
             activity = row[5]
+            action_period = action + '_' + str(period) + SEP
             if none:
-                actions += action + '_' + str(period) + SEP
+                actions += action_period
                 activities_set.add(activity)      
-                actions_set.add(action)
+                actions_set.add(action_period)
             if activity != NONE and not none:
-                actions += action + '_' + str(period) + SEP
+                actions += action_period
                 activities_set.add(activity)
-                actions_set.add(action)
+                actions_set.add(action_period)
             if i % 10000 == 0:
                 print '  -Actions processed:', i
         print 'Total actions processed:', i
