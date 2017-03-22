@@ -108,7 +108,7 @@ def transform_csv_to_periods():
                 event = row[4]
                 period = instant_to_period(instant, 30)
                 activity = row[5]
-                action_period = action + '_' + str(period)
+                action_period = action + str(period)
                 new_row = [date, instant, sensor, action_period, event, activity]
                 writer.writerow(new_row)
     print 'Total actions processed:', i
@@ -132,11 +132,11 @@ def process_time_csv(none=True):
             #event = row[4]
             activity = row[5]
             if none:
-                actions += action
+                actions += action + SEP
                 activities_set.add(activity)      
                 actions_set.add(action)
             if activity != NONE and not none:
-                actions += action
+                actions += action + SEP
                 activities_set.add(activity)
                 actions_set.add(action)
             if i % 10000 == 0:
