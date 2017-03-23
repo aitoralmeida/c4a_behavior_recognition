@@ -53,6 +53,11 @@ BEST_MODEL = 'best_model.hdf5'
 # if time is being taken into account
 TIME = True
 
+# if the actions are encoded with onehot vectors
+ONEHOT = False
+# if the actions are encoded with embeddings
+EMBEDDINGS = True
+
 """
 Load the best model saved in the checkpoint callback
 """
@@ -99,7 +104,8 @@ def plot_training_info(metrics, save, history):
             plt.show()
             
 """
-Prepares the trainning examples of secuences based on the total actions
+Prepares the training examples of secuences based on the total actions, using
+embeddings to represent them.
 Input
     df:Pandas DataFrame with timestamp, sensor, action, event and activity
     unique_actions: list of actions
@@ -136,11 +142,43 @@ def prepare_x_y(df, unique_actions):
     for i in range(last_action-INPUT_ACTIONS):
         X.append(actions_by_index[i:i+INPUT_ACTIONS])
         #represent the target action as a onehot for the softmax
-        target_action = ''.join(i for i in actions[i+INPUT_ACTIONS] if not i.isdigit()) # remove the period
+        target_action = ''.join(i for i in actions[i+INPUT_ACTIONS] if not i.isdigit()) # remove the period if it exists
         target_action_onehot = np.zeros(len(unique_actions))
         target_action_onehot[unique_actions.index(target_action)] = 1.0
         y.append(target_action_onehot)
-    return X, y, tokenizer    
+    return X, y, tokenizer   
+    
+"""
+Prepares the training examples of secuences based on the total actions, using 
+one hot vectors to represent them
+Input
+    df:Pandas DataFrame with timestamp, sensor, action, event and activity
+    unique_actions: list of actions
+Output:
+    X: array with action index sequences
+    y: array with action index for next action    
+"""            
+def prepare_x_y_onehot(df, unique_actions):
+    #recover all the actions in order.
+    actions = df['action'].values
+    #translate actions to onehots
+    actions_by_onehot = [] 
+    for action in actions:
+        onehot = [0] * len(unique_actions)
+        action_index = unique_actions.index(action)
+        onehot[action_index] = 1
+        actions_by_onehot.append(onehot)
+
+    #Create the trainning sets of sequences with a lenght of INPUT_ACTIONS
+    last_action = len(actions) - 1
+    X = []
+    y = []
+    for i in range(last_action-INPUT_ACTIONS):
+        X.append(actions_by_onehot[i:i+INPUT_ACTIONS])
+        #represent the target action as a onehot for the softmax
+        target_action = actions_by_onehot[i+INPUT_ACTIONS]
+        y.append(target_action)
+    return X, y 
     
 """
 Function to create the embedding matrix, which will be used to initialize
@@ -196,12 +234,15 @@ def main(argv):
     print '*' * 20
     print 'Preparing dataset...'
     sys.stdout.flush()
-    # Prepare sequences using action indices
-    # Each action will be an index which will point to an action vector
-    # in the weights matrix of the Embedding layer of the network input
-    X, y, tokenizer = prepare_x_y(df_dataset, unique_actions)    
-    # Create the embedding matrix for the embedding layer initialization
-    embedding_matrix = create_embedding_matrix(tokenizer)
+    if EMBEDDINGS:
+        # Prepare sequences using action indices
+        # Each action will be an index which will point to an action vector
+        # in the weights matrix of the Embedding layer of the network input
+        X, y, tokenizer = prepare_x_y(df_dataset, unique_actions)    
+        # Create the embedding matrix for the embedding layer initialization
+        embedding_matrix = create_embedding_matrix(tokenizer)
+    if ONEHOT:
+        X, y = prepare_x_y_onehot(df_dataset, unique_actions) 
     #divide the examples in training and validation
     total_examples = len(X)
     test_per = 0.2
@@ -210,6 +251,7 @@ def main(argv):
     X_test = X[:limit]
     y_train = y[limit:]
     y_test = y[:limit]
+    print 'Different actions:', total_actions
     print 'Total examples:', total_examples
     print 'Train examples:', len(X_train), len(y_train) 
     print 'Test examples:', len(X_test), len(y_test)
@@ -226,11 +268,14 @@ def main(argv):
     print 'Building model...'
     sys.stdout.flush()
     model = Sequential()
-    model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
-    #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
-    model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))  
+    if EMBEDDINGS:
+        model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
+        #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
+        model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))  
     
-   
+    if ONEHOT:
+        model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, total_actions), name='LSTM1'))  
+                
     model.add(Dense(1024, name = 'dense1'))
 #    model.add(BatchNormalization(name = 'batch1'))
     model.add(Activation('relu', name = 'relu1'))   
