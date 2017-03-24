@@ -10,8 +10,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, Input, LSTM
-from keras.layers.merge import Concatenate
+from keras.layers import Activation, Dense, Dropout, Embedding, Input, LSTM, merge
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
@@ -112,26 +111,25 @@ Output:
 def prepare_x_y(df, unique_actions):
     #recover all the actions in order.
     actions = df['action'].values
-    timestamps = df['timestamp'].values
+    timestamps = df.index.tolist()
     print 'total actions', len(actions)
     print 'total timestaps', len(timestamps)
     print timestamps[0]
-#    print actions.tolist()
-#    print actions.tolist().index('HallBedroomDoor_1')
     # Use tokenizer to generate indices for every action
     # Very important to put lower=False, since the Word2Vec model
     # has the action names with some capital letters
     tokenizer = Tokenizer(lower=False)
     tokenizer.fit_on_texts(actions.tolist())
     action_index = tokenizer.word_index  
-#    print action_index
     #translate actions to indexes
     actions_by_index = []
-    
-    print len(actions)
     for action in actions:
-#        print action
         actions_by_index.append(action_index[action])
+        
+    #translate timestamps to hours (format 2008-02-25 00:20:14)
+    hours = []
+    for timestamp in timestamps:
+        hours.append(timestamp.hour)
 
     #Create the trainning sets of sequences with a lenght of INPUT_ACTIONS
     last_action = len(actions) - 1
@@ -140,7 +138,7 @@ def prepare_x_y(df, unique_actions):
     y = []
     for i in range(last_action-INPUT_ACTIONS):
         X_actions.append(actions_by_index[i:i+INPUT_ACTIONS])
-        X_times.append(timestamps[i:i+INPUT_ACTIONS])
+        X_times.append(hours[i:i+INPUT_ACTIONS])
         #represent the target action as a onehot for the softmax
         target_action = ''.join(i for i in actions[i+INPUT_ACTIONS] if not i.isdigit()) # remove the period if it exists
         target_action_onehot = np.zeros(len(unique_actions))
@@ -235,9 +233,9 @@ def main(argv):
     # Actions times branch
     input_time = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_time')
     #merge embeddings (5 x 50) and times (5 x 1), to have 5 x 51
-    merge = Concatenate([embedding_actions, input_time])   
+    concat = merge([embedding_actions, input_time], mode='concat', concat_axis=2)   
     # Everything continues in a single branch
-    lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+1), name='lstm_1')(merge)
+    lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+1), name='lstm_1')(concat)
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm_1)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
     dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
@@ -245,27 +243,7 @@ def main(argv):
     output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
     
     model = Model(inputs=[input_actions, input_time], outputs=[output_actions])
-    
-    
-#    model = Sequential()
-#
-#    model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
-#    #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
-#    model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))  
-#      
-#    model.add(Dense(1024, name = 'dense1'))
-##    model.add(BatchNormalization(name = 'batch1'))
-#    model.add(Activation('relu', name = 'relu1'))   
-#    model.add(Dropout(0.8, name = 'drop1'))    
-#    
-#    model.add(Dense(1024, name = 'dense2'))
-##    model.add(BatchNormalization(name = 'batch1'))
-#    model.add(Activation('relu', name = 'relu2'))   
-#    model.add(Dropout(0.8, name = 'drop2'))    
-#    
-#    model.add(Dense(total_actions, name = 'dense_final'))
-#    model.add(Activation('softmax', name = 'softmax'))
-    
+        
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
     print(model.summary())
     sys.stdout.flush()
