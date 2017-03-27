@@ -5,12 +5,13 @@ Created on Wed Mar 15 09:12:22 2017
 @author: aitor
 """
 import json
+import math
 import sys
 
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, Input, LSTM, merge
+from keras.layers import Activation, Dense, Dropout, Embedding, Input, LSTM, merge, Reshape
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
@@ -173,6 +174,46 @@ def create_embedding_matrix(tokenizer):
     print unknown_words
     
     return embedding_matrix
+    
+def transform_time_cyclic(timestamp, weekday):
+    """
+    This function transforms a timestamp into a cyclic clock-based time representation
+    Parameters
+    ----------        
+    timestamp : datetime.datetime
+        the timestamp to be transformed
+    weekday : boolean
+        a boolean to say whether the weekday should be treated for the calculation
+                    
+    Returns
+    ----------
+    x : float
+        x coordinate of the 2D plane defining the clock [-1, 1]
+    y : float
+        y coordinate of the 2D plane defining the clock [-1, 1]
+    """
+    # Timestamp comes in datetime.datetime format
+    HOURS = 24
+    MINUTES = 60
+    SECONDS = 60
+    
+    MAX_SECONDS = 0.0
+    total_seconds = -1.0 # For error checking
+    
+    if weekday == True:    
+        MAX_SECONDS = float(6*HOURS*MINUTES*SECONDS + 23*MINUTES*SECONDS + 59*SECONDS + 59)
+        total_seconds = float(timestamp.weekday()*HOURS*MINUTES*SECONDS + timestamp.hour*MINUTES*SECONDS + timestamp.minute*SECONDS + timestamp.second)
+    else:
+        MAX_SECONDS = float(23*MINUTES*SECONDS + 59*SECONDS + 59)
+        total_seconds = float(timestamp.hour*MINUTES*SECONDS + timestamp.minute*SECONDS + timestamp.second)
+    
+        
+    angle = (total_seconds*2*math.pi) / MAX_SECONDS
+    
+    x = math.cos(angle)
+    y = math.sin(angle)
+    
+    return x, y
 
 
 def main(argv):
@@ -231,9 +272,10 @@ def main(argv):
     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)    
     # Actions times branch
-    input_time = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_time')
+    input_time = Input(shape=(INPUT_ACTIONS,), dtype='float32', name='input_time')
+    reshape_1 = Reshape((INPUT_ACTIONS, 1))(input_time)
     #merge embeddings (5 x 50) and times (5 x 1), to have 5 x 51
-    concat = merge([embedding_actions, input_time], mode='concat', concat_axis=2)   
+    concat = merge([embedding_actions, reshape_1], mode='concat', concat_axis=-1)   
     # Everything continues in a single branch
     lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+1), name='lstm_1')(concat)
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm_1)
@@ -242,7 +284,7 @@ def main(argv):
     drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
     output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
     
-    model = Model(inputs=[input_actions, input_time], outputs=[output_actions])
+    model = Model(input=[input_actions, input_time], output=[output_actions])
         
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
     print(model.summary())
