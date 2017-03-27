@@ -130,7 +130,9 @@ def prepare_x_y(df, unique_actions):
     #translate timestamps to hours (format 2008-02-25 00:20:14)
     hours = []
     for timestamp in timestamps:
-        hours.append(timestamp.hour)
+        time_x, time_y = transform_time_cyclic(timestamp, False)
+        time_coord =  [time_x, time_y]
+        hours.append(time_coord)
 
     #Create the trainning sets of sequences with a lenght of INPUT_ACTIONS
     last_action = len(actions) - 1
@@ -272,10 +274,10 @@ def main(argv):
     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)    
     # Actions times branch
-    input_time = Input(shape=(INPUT_ACTIONS,), dtype='float32', name='input_time')
-    reshape_1 = Reshape((INPUT_ACTIONS, 1))(input_time)
+    input_time = Input(shape=(INPUT_ACTIONS,2), dtype='float32', name='input_time')
+    #reshape_1 = Reshape((INPUT_ACTIONS, 2))(input_time)
     #merge embeddings (5 x 50) and times (5 x 1), to have 5 x 51
-    concat = merge([embedding_actions, reshape_1], mode='concat', concat_axis=-1)   
+    concat = merge([embedding_actions, input_time], mode='concat', concat_axis=-1)   
     # Everything continues in a single branch
     lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+1), name='lstm_1')(concat)
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm_1)
