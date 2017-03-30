@@ -10,7 +10,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, LSTM
+from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Sequential
 from keras.preprocessing.text import Tokenizer
@@ -51,7 +51,7 @@ ACTION_EMBEDDING_LENGTH = 50
 BEST_MODEL = 'best_model.hdf5'
 
 # if time is being taken into account
-TIME = True
+TIME = False
 
 # if the actions are encoded with onehot vectors
 ONEHOT = False
@@ -271,7 +271,7 @@ def main(argv):
     if EMBEDDINGS:
         model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
         #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
-        model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))  
+        model.add(Bidirectional(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1')))
     
     if ONEHOT:
         model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, total_actions), name='LSTM1'))  
@@ -283,8 +283,10 @@ def main(argv):
     
     model.add(Dense(1024, name = 'dense2'))
 #    model.add(BatchNormalization(name = 'batch1'))
-    model.add(Activation('relu', name = 'relu2'))   
-    model.add(Dropout(0.8, name = 'drop2'))    
+    model.add(Activation('relu', name = 'relu2')) 
+    model.add(Dropout(0.8, name = 'drop2')) 
+
+    
     
     model.add(Dense(total_actions, name = 'dense_final'))
     model.add(Activation('softmax', name = 'softmax'))
