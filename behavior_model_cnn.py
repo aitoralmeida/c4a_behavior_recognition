@@ -12,7 +12,7 @@ from gensim.models import Word2Vec
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, Merge, Input, Reshape
 from keras.layers.normalization import BatchNormalization
-from keras.models import load_model, Sequential
+from keras.models import load_model, Sequential, Model
 from keras.preprocessing.text import Tokenizer
 
 import matplotlib
@@ -262,53 +262,79 @@ def main(argv):
     print 'Building model...'
     sys.stdout.flush()
     
-    embeddings = Sequential()
-    embeddings.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name = 'embeddings'))
-    embeddings.add(Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape'))    
+    #input pipeline
+    input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
+    embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)        
+    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(embedding_actions)
     
-    branch_ngram_2= Sequential()
-    branch_ngram_2.add(embeddings)
-    branch_ngram_2.add(Convolution2D(100, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2'))
-    branch_ngram_2.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_2')) # 1-max-pool
+    #branching convolutions
+    ngram_2 = Convolution2D(100, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
+    maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
     
-    branch_ngram_3= Sequential()
-    branch_ngram_3.add(embeddings)
-    branch_ngram_3.add(Convolution2D(100, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3'))
-    branch_ngram_3.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')) # 1-max-pool
+    ngram_3 = Convolution2D(100, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3')(reshape)
+    maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
     
-    branch_ngram_4= Sequential()
-    branch_ngram_4.add(embeddings)
-    branch_ngram_4.add(Convolution2D(100, 4, ACTION_EMBEDDING_LENGTH ,border_mode='valid',activation='relu', name = 'conv_4'))
-    branch_ngram_4.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')) # 1-max-pool
+    ngram_4 = Convolution2D(100, 4, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_4')(reshape)
+    maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
     
-    branch_ngram_5= Sequential()
-    branch_ngram_5.add(embeddings)
-    branch_ngram_5.add(Convolution2D(100, 5, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_5'))
-    branch_ngram_5.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')) # 1-max-pool
+    ngram_5 = Convolution2D(100, 5, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_5')(reshape)
+    maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
     
-    merged = Merge([branch_ngram_2, branch_ngram_3, branch_ngram_4,branch_ngram_5], mode='concat', concat_axis=2, name = 'merge')    
+    #1 branch again
+    merged = Merge([maxpool_2, maxpool_3, maxpool_4, maxpool_5], mode='concat', concat_axis=2, name = 'merge')    
+    flatten = Flatten(name = 'flatten')(merged)
+    dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(flatten)
+    drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
+    dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
+    drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
+    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
+      
+ 
+#    embeddings = Sequential()
+#    embeddings.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name = 'embeddings'))
+#    embeddings.add(Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape'))    
+#    
+#    branch_ngram_2= Sequential()
+#    branch_ngram_2.add(embeddings)
+#    branch_ngram_2.add(Convolution2D(100, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2'))
+#    branch_ngram_2.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_2')) # 1-max-pool
+#    
+#    branch_ngram_3= Sequential()
+#    branch_ngram_3.add(embeddings)
+#    branch_ngram_3.add(Convolution2D(100, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3'))
+#    branch_ngram_3.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')) # 1-max-pool
+#    
+#    branch_ngram_4= Sequential()
+#    branch_ngram_4.add(embeddings)
+#    branch_ngram_4.add(Convolution2D(100, 4, ACTION_EMBEDDING_LENGTH ,border_mode='valid',activation='relu', name = 'conv_4'))
+#    branch_ngram_4.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')) # 1-max-pool
+#    
+#    branch_ngram_5= Sequential()
+#    branch_ngram_5.add(embeddings)
+#    branch_ngram_5.add(Convolution2D(100, 5, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_5'))
+#    branch_ngram_5.add(MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')) # 1-max-pool
+#    
+#    merged = Merge([branch_ngram_2, branch_ngram_3, branch_ngram_4,branch_ngram_5], mode='concat', concat_axis=2, name = 'merge')    
+#    
+#    model = Sequential()
+#    model.add(merged)
+#    model.add(Flatten(name = 'flatten'))
+##    model.add(Bidirectional(LSTM(512, return_sequences=False, name='LSTM1')))
+#
+#    model.add(Dense(1024, name = 'dense1'))
+##    model.add(BatchNormalization(name = 'batch1'))
+#    model.add(Activation('relu', name = 'relu1'))   
+#    model.add(Dropout(0.8, name = 'drop1'))    
+#    
+#    model.add(Dense(1024, name = 'dense2'))
+##    model.add(BatchNormalization(name = 'batch1'))
+#    model.add(Activation('relu', name = 'relu2')) 
+#    model.add(Dropout(0.8, name = 'drop2')) 
+#    
+#    model.add(Dense(total_actions, name = 'dense_final'))
+#    model.add(Activation('softmax', name = 'softmax'))
     
-    model = Sequential()
-    model.add(merged)
-    model.add(Flatten(name = 'flatten'))
-#    model.add(Bidirectional(LSTM(512, return_sequences=False, name='LSTM1')))
-
-    model.add(Dense(1024, name = 'dense1'))
-#    model.add(BatchNormalization(name = 'batch1'))
-    model.add(Activation('relu', name = 'relu1'))   
-    model.add(Dropout(0.8, name = 'drop1'))    
-    
-    model.add(Dense(1024, name = 'dense2'))
-#    model.add(BatchNormalization(name = 'batch1'))
-    model.add(Activation('relu', name = 'relu2')) 
-    model.add(Dropout(0.8, name = 'drop2')) 
-
-    
-    
-    model.add(Dense(total_actions, name = 'dense_final'))
-    model.add(Activation('softmax', name = 'softmax'))
-    
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
+    model = Model(input=[input_actions], output=[output_actions])
     print(model.summary())
     sys.stdout.flush()
     
