@@ -10,7 +10,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, Merge, Input, Reshape
+from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Sequential, Model
 from keras.preprocessing.text import Tokenizer
@@ -281,7 +281,7 @@ def main(argv):
     maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
     
     #1 branch again
-    merged = Merge([maxpool_2, maxpool_3, maxpool_4, maxpool_5], mode='concat', concat_axis=2, name = 'merge')    
+    merged = merge([maxpool_2, maxpool_3, maxpool_4, maxpool_5], mode='concat', concat_axis=2)    
     flatten = Flatten(name = 'flatten')(merged)
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(flatten)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
@@ -335,6 +335,7 @@ def main(argv):
 #    model.add(Activation('softmax', name = 'softmax'))
     
     model = Model(input=[input_actions], output=[output_actions])
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
     print(model.summary())
     sys.stdout.flush()
     
