@@ -10,7 +10,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
+from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, AveragePooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Sequential, Model
 from keras.preprocessing.text import Tokenizer
@@ -273,7 +273,7 @@ def main(argv):
     
     ngram_3 = Convolution2D(200, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3')(reshape)
     maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
-    
+   
     ngram_4 = Convolution2D(200, 4, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_4')(reshape)
     maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
     
@@ -284,7 +284,7 @@ def main(argv):
     merged = merge([maxpool_2, maxpool_3, maxpool_4, maxpool_5], mode='concat', concat_axis=2)    
     flatten = Flatten(name = 'flatten')(merged)
 #    batch_norm = BatchNormalization()(flatten)
-    dense_1 = Dense(512, activation = 'relu',name = 'dense_1')(flatten)
+    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
 #    dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
 #    drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
@@ -300,7 +300,7 @@ def main(argv):
     sys.stdout.flush()
     BATCH_SIZE = 128
     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
+    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=100, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
 
     print '*' * 20
     print 'Plotting history...'
@@ -315,6 +315,20 @@ def main(argv):
     metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
     print metrics
     
+    predictions = model.predict(X_test, BATCH_SIZE)
+    correct = [0] * 5
+    prediction_range = 5
+    for i, prediction in enumerate(predictions):
+        correct_answer = y_test[i].tolist().index(1)       
+        best_n = np.sort(prediction)[::-1][:prediction_range]
+        for j in range(prediction_range):
+            if prediction.tolist().index(best_n[j]) == correct_answer:
+                for k in range(j,prediction_range):
+                    correct[k] += 1 
+                       
+    for i in range(prediction_range):
+        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+
     print '************ FIN ************\n' * 3  
 
 
