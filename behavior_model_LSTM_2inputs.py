@@ -279,7 +279,7 @@ def main(argv):
     #merge embeddings (5 x 50) and times (5 x 1), to have 5 x 51
     concat = merge([embedding_actions, input_time], mode='concat', concat_axis=-1)   
     # Everything continues in a single branch
-    lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+1), name='lstm_1')(concat)
+    lstm_1 = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH+2), name='lstm_1')(concat)
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm_1)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
     dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
@@ -311,6 +311,24 @@ def main(argv):
     model = load_model(BEST_MODEL)
     metrics = model.evaluate([X_actions_test, X_times_test], y_test, batch_size=BATCH_SIZE)
     print metrics
+    
+    predictions = model.predict([X_actions_test, X_times_test], BATCH_SIZE)
+    correct = [0] * 5
+    prediction_range = 5
+    for i, prediction in enumerate(predictions):
+        correct_answer = y_test[i].tolist().index(1)       
+        best_n = np.sort(prediction)[::-1][:prediction_range]
+        for j in range(prediction_range):
+            if prediction.tolist().index(best_n[j]) == correct_answer:
+                for k in range(j,prediction_range):
+                    correct[k] += 1 
+    
+    accuracies = []                   
+    for i in range(prediction_range):
+        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+        accuracies.append((correct[i] * 1.0) / len(y_test))
+    
+    print accuracies
     
     print '************ FIN ************\n' * 3  
 
