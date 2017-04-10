@@ -300,7 +300,7 @@ def main(argv):
     sys.stdout.flush()
     BATCH_SIZE = 128
     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=100, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
+    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
 
     print '*' * 20
     print 'Plotting history...'
