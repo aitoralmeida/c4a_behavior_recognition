@@ -271,7 +271,7 @@ def main(argv):
     if EMBEDDINGS:
         model.add(Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='Embedding'))
         #model.add(LSTM(512, return_sequences=False, dropout_W=0.2, dropout_U=0.2, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH)))  
-        model.add(Bidirectional(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1')))
+        model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='LSTM1'))
     
     if ONEHOT:
         model.add(LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, total_actions), name='LSTM1'))  
