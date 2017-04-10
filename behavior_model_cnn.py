@@ -325,9 +325,13 @@ def main(argv):
             if prediction.tolist().index(best_n[j]) == correct_answer:
                 for k in range(j,prediction_range):
                     correct[k] += 1 
-                       
+    
+    accuracies = []                   
     for i in range(prediction_range):
         print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+        accuracies.append((correct[i] * 1.0) / len(y_test))
+    
+    print accuracies
 
     print '************ FIN ************\n' * 3  
 
