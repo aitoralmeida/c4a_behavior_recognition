@@ -4,11 +4,11 @@ Created on Fri Jun 10 11:24:51 2016
 
 @author: aitor
 """
+import random
 
 from keras.models import Sequential
-from keras.layers.recurrent import LSTM, GRU
-from keras.layers.core import Dense, Dropout, Activation
-from keras.layers.embeddings import Embedding
+from keras.layers import Dense, Activation, Dropout
+from keras.layers import LSTM
 import numpy as np
 
 WINDOW_SIZE = 1
@@ -49,19 +49,21 @@ def get_most_probable(result):
     m = max(result)
     pos = [i for i, j in enumerate(result) if j == m]
     if len(pos) > 1:
-        print 'Two probable values, picking only the first one'
+        print 'Two probable values, picking one randomly'
     char_repr = [0] * len(FEATURES)
-    char_repr[pos[0]] = 1
-    return char_repr
+    char_repr[random.choice(pos)] = 1
+    return char_repr    
     
-    
-def generate_text(model, number_of_chars = 2000, initial_char='\n'):
-    generated_text = ''
+def generate_text(model, number_of_chars = 2000, initial_char='t'):
+    text = ''
     encoded_char = np.array([encode_char(initial_char)])
     for i in range(number_of_chars):
         result = model.predict(encoded_char, batch_size=1)
-        generated_text += decode_char(result[0])
-        encoded_char = result    
+        result_repr = get_most_probable(result[0])  
+        result_char = decode_char(result_repr)
+        text += result_char
+        encoded_char = np.array([result_repr])
+    return text
 
 # *********Create the training and test data
 print 'Creating test data...'
@@ -71,9 +73,7 @@ for l in open('shakespear.txt', 'r'):
 text = ''.join(lines)
 text = text.lower()
 # Get the features (alphabet + other char)
-chars = set()
-for char in text:
-    chars.add(char)
+chars = set(text)
 feature_list = list(chars)
 FEATURES = feature_list
 # Transform the chars to feature_list vectors. shape = [len(feature_list)] with
@@ -102,29 +102,36 @@ print 'X_train shape:', X_train.shape
 print 'Y_train shape:', Y_train.shape
 
 
-
-# Create the model (WINDOW_SIZE, len(feature_list))
+## Create the model (WINDOW_SIZE, len(feature_list))
 print 'Creating model...'
 model = Sequential()
 # This works
 model.add(Embedding(X_train.shape[0], len(feature_list), input_length=len(feature_list)))
+model.add(LSTM(len(feature_list), return_sequences=True)) 
 model.add(LSTM(len(feature_list))) 
 model.add(Activation('softmax'))
 print 'Training model...'
-batch_size = 10
+batch_size = 50
 model.compile(optimizer='adam', loss='categorical_crossentropy')
-print X_train.shape, Y_train.shape
-model.fit(X_train, Y_train, nb_epoch=1, batch_size=batch_size)
+model.fit(X_train, Y_train, nb_epoch=10, batch_size=batch_size)
 print 'Model trained'
-print 'Creating input data...'
-char_repr = encode_char('a')
-input_data = np.array([])
-print 'Predicting...'
-res = model.predict(input_data, batch_size=1)
-print 'Prediction:', res
-rep = get_most_probable(res[0])
-print 'Char:', decode_char(rep)
-#print 'Evaluating model...'
+print 'Generating text...'
+text = generate_text(model)
+print text
+
+
+#print 'Creating input data...'
+#char_repr = encode_char('t')
+#input_data = np.array([char_repr])
+#print 'Predicting...'
+#res = model.predict(input_data, batch_size=1)
+#print 'Prediction:', res
+#rep = get_most_probable(res[0])
+#print 'Features:', FEATURES
+#print 'Char repr:', rep
+#print 'Char:', decode_char(rep)
+##print 'Evaluating model...'
+
 #score, acc = model.evaluate(X_eval, Y_eval, batch_size=batch_size)
 #print('Test score:', score)
 #print('Test accuracy:', acc)

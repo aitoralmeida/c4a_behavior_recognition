@@ -285,7 +285,6 @@ def main(argv):
 #    model.add(BatchNormalization(name = 'batch1'))
     model.add(Activation('relu', name = 'relu2')) 
     model.add(Dropout(0.8, name = 'drop2')) 
-
     
     
     model.add(Dense(total_actions, name = 'dense_final'))
