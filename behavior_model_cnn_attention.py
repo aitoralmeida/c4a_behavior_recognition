@@ -10,7 +10,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, AveragePooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
+from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, GRU, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, AveragePooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
 from keras.layers.normalization import BatchNormalization
 from keras.models import load_model, Sequential, Model
 from keras.preprocessing.text import Tokenizer
@@ -269,12 +269,12 @@ def main(argv):
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)        
     
     #attention mechanism
-    bidirectional = Bidirectional(512, return_sequences=True, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional')(embedding_actions)
-    dense_att_1 = Dense(512, activation = 'tanh',name = 'dense_att_1')(bidirectional)
+    bidirectional_gru = Bidirectional(GRU(512, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
+    dense_att_1 = Dense(512, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
     
+    #aplying the attention values to the inputs
     apply_att = merge([embedding_actions, dense_att_2], mode='multiply')    
-    
     
     reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att)
     
