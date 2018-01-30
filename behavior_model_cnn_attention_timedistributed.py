@@ -258,8 +258,9 @@ def main(argv):
     print '*' * 20
     print 'Building model...'
     sys.stdout.flush()
-    #input pipeline
+    #INPUT_ACTIONS is the lenght of the input sequence
     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
+    #the embedding layer is initialized with the word2vec weights
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
     #attention mechanism
     gru = GRU(128, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), return_sequences=True, name='bidirectional_gru')(embedding_actions)
@@ -267,13 +268,15 @@ def main(argv):
     dense_att_1 = TimeDistributed(Dense(128, activation = 'tanh',name = 'dense_att_1'))(gru)
     # total units = 1 * INPUT_ACTIONS
     dense_att_2 = TimeDistributed(Dense(1))(dense_att_1)
-    reshape_distributed = Reshape((INPUT_ACTIONS,))(dense_att_2) # to undo the time distribution and have 1 value for each action
+    # to undo the time distribution and have 1 value for each action
+    reshape_distributed = Reshape((INPUT_ACTIONS,))(dense_att_2) 
     attention = Activation('softmax')(reshape_distributed)
-    reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(attention) #so we can multiply it with embeddings
-    #apply the attention
+    #so we can multiply it with embeddings
+    reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(attention) 
+    #apply the attention to the embeddings
     apply_att = Multiply()([embedding_actions, reshape_att])
-    #convolutions
-    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) #add channel dimension for the CNNs
+    #add channel dimension for the CNNs
+    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) 
     #branching convolutions
     ngram_2 = Convolution2D(200, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
     maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
