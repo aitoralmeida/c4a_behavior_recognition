@@ -213,7 +213,6 @@ def apply_attention (layers):
     #sanity check
     assert len(embeddings.shape) == 3
     assert len(attention.shape) == 2
-    assert embeddings.shape[0] == attention.shape[0]
     assert embeddings.shape[1] == attention.shape[1]
   
     embeddings = embeddings.copy()
