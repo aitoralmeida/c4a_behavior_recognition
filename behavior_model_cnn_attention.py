@@ -215,7 +215,6 @@ def apply_attention (layers):
     assert len(attention.shape) == 2
     assert embeddings.shape[1] == attention.shape[1]
   
-    embeddings = embeddings.copy()
     for i in range(embeddings.shape[0]):
         for j in range(embeddings.shape[1]):
             for k in range(embeddings.shape[2]):
