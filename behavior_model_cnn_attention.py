@@ -9,7 +9,7 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, MaxPooling2D, Multiply, Reshape
+from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
 
@@ -204,6 +204,23 @@ def create_embedding_matrix(tokenizer):
     print unknown_words
     
     return embedding_matrix
+    
+# embeddings shape: [none, INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH]   
+# attention shape: [none, INPUT_ACTIONS]
+def apply_attention (embeddings, attention):
+    #sanity check
+    assert len(embeddings.shape) == 3
+    assert len(attention.shape) == 2
+    assert embeddings.shape[0] == attention.shape[0]
+    assert embeddings.shape[1] == attention.shape[1]
+  
+    embeddings = embeddings.copy()
+    for i in range(embeddings.shape[0]):
+        for j in range(embeddings.shape[1]):
+            for k in range(embeddings.shape[2]):
+                embeddings[i,j,k] = embeddings[i,j,k] * attention[i,j]
+    return embeddings
+    
 
 def main(argv):
     print '*' * 20
@@ -263,9 +280,10 @@ def main(argv):
     dense_att_1 = Dense(256, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
     #apply the attention
-    apply_att = Dot(axes=(2,1))([embedding_actions, dense_att_2])
+    apply_att = Lambda(apply_attention)([embedding_actions, dense_att_2])
+#    apply_att = Dot(axes=(2,1))([embedding_actions, dense_att_2])
     #convolutions
- #   reshape = Reshape((-1, 5, 50), name = 'reshape')(apply_att)
+#    reshape = Reshape((-1, 5, 50), name = 'reshape')(apply_att)
     #branching convolutions
 #    ngram_2 = Convolution2D(200, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
 #    maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
