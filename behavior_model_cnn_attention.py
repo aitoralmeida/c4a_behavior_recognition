@@ -261,13 +261,14 @@ def main(argv):
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
     #attention mechanism
     bidirectional_gru = Bidirectional(GRU(512, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
-    dense_att_1 = Dense(256, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
+    # TODO: check time distributed, and return sequences    
+    dense_att_1 = Dense(512, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
     reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2) #so we can multiply it with embeddings
     #apply the attention
     apply_att = Multiply()([embedding_actions, reshape_att])
     #convolutions
-    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att)
+    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) #add channel dimension for the CNNs
     #branching convolutions
     ngram_2 = Convolution2D(200, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
     maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
@@ -289,6 +290,47 @@ def main(argv):
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
     print(model.summary())
     sys.stdout.flush()
+    
+    print '*' * 20
+    print 'Training model...'    
+    sys.stdout.flush()
+    BATCH_SIZE = 128
+    checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
+    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
+
+    print '*' * 20
+    print 'Plotting history...'
+    sys.stdout.flush()
+    plot_training_info(['accuracy', 'loss'], True, history.history)
+    
+
+    print '*' * 20
+    print 'Evaluating best model...'
+    sys.stdout.flush()    
+    model = load_model(BEST_MODEL)
+    metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
+    print metrics
+    
+    predictions = model.predict(X_test, BATCH_SIZE)
+    correct = [0] * 5
+    prediction_range = 5
+    for i, prediction in enumerate(predictions):
+        correct_answer = y_test[i].tolist().index(1)       
+        best_n = np.sort(prediction)[::-1][:prediction_range]
+        for j in range(prediction_range):
+            if prediction.tolist().index(best_n[j]) == correct_answer:
+                for k in range(j,prediction_range):
+                    correct[k] += 1 
+    
+    accuracies = []                   
+    for i in range(prediction_range):
+        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+        accuracies.append((correct[i] * 1.0) / len(y_test))
+    
+    print accuracies
+
+    print '************ FIN ************\n' * 3  
+
 
 
 if __name__ == "__main__":
