@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Wed Mar 15 09:12:22 2017
 
@@ -10,9 +9,8 @@ import sys
 from gensim.models import Word2Vec
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Embedding, LSTM, GRU, Bidirectional, Convolution1D, Convolution2D, MaxPooling2D, AveragePooling2D, GlobalMaxPooling1D,GlobalMaxPooling2D, Flatten, merge, Input, Reshape
-from keras.layers.normalization import BatchNormalization
-from keras.models import load_model, Sequential, Model
+from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, MaxPooling2D, Multiply, Reshape
+from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
 
 import matplotlib
@@ -21,6 +19,7 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+
 
 # Kasteren dataset
 DIR = './sensor2vec/kasteren_dataset/'
@@ -97,7 +96,7 @@ def plot_training_info(metrics, save, history):
             plt.gcf().clear()
         else:
             plt.show()
-            
+
 """
 Prepares the training examples of secuences based on the total actions, using
 embeddings to represent them.
@@ -205,10 +204,6 @@ def create_embedding_matrix(tokenizer):
     print unknown_words
     
     return embedding_matrix
- 
-    
-
-
 
 def main(argv):
     print '*' * 20
@@ -229,7 +224,6 @@ def main(argv):
     print '*' * 20
     print 'Preparing dataset...'
     sys.stdout.flush()
-
     # Prepare sequences using action indices
     # Each action will be an index which will point to an action vector
     # in the weights matrix of the Embedding layer of the network input
@@ -261,91 +255,40 @@ def main(argv):
     print '*' * 20
     print 'Building model...'
     sys.stdout.flush()
-    
-    
-    
     #input pipeline
     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
-    embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)        
-    
+    embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
     #attention mechanism
     bidirectional_gru = Bidirectional(GRU(512, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
     dense_att_1 = Dense(256, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
-    
-    #aplying the attention values to the inputs
-    apply_att = merge([embedding_actions, dense_att_2], mode='multiply')    
-    
-    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att)
-    
+    #apply the attention
+    apply_att = Dot(axes=(2,1))([embedding_actions, dense_att_2])
+    #convolutions
+ #   reshape = Reshape((-1, 5, 50), name = 'reshape')(apply_att)
     #branching convolutions
-    ngram_2 = Convolution2D(200, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
-    maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
-    
-    ngram_3 = Convolution2D(200, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3')(reshape)
-    maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
-   
-    ngram_4 = Convolution2D(200, 4, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_4')(reshape)
-    maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
-    
-    ngram_5 = Convolution2D(200, 5, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_5')(reshape)
-    maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
-           
+#    ngram_2 = Convolution2D(200, 2, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_2')(reshape)
+#    maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
+#    ngram_3 = Convolution2D(200, 3, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_3')(reshape)
+#    maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
+#    ngram_4 = Convolution2D(200, 4, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_4')(reshape)
+#    maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
+#    ngram_5 = Convolution2D(200, 5, ACTION_EMBEDDING_LENGTH, border_mode='valid',activation='relu', name = 'conv_5')(reshape)
+#    maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
     #1 branch again
-    merged = merge([maxpool_2, maxpool_3, maxpool_4, maxpool_5], mode='concat', concat_axis=2)    
-    flatten = Flatten(name = 'flatten')(merged)
-#    batch_norm = BatchNormalization()(flatten)
-    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
-    drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
-#    dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
-#    drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
-    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
-         
-    model = Model(input=[input_actions], output=[output_actions])
+#    merged = Concatenate(axis=2)([maxpool_2, maxpool_3, maxpool_4, maxpool_5])
+#    flatten = Flatten(name = 'flatten')(merged)
+#    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
+#    drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
+    #action prediction
+#    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
+
+    model = Model(input=[input_actions], output=[apply_att])
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
     print(model.summary())
     sys.stdout.flush()
-    
-    print '*' * 20
-    print 'Training model...'    
-    sys.stdout.flush()
-    BATCH_SIZE = 128
-    checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
-
-    print '*' * 20
-    print 'Plotting history...'
-    sys.stdout.flush()
-    plot_training_info(['accuracy', 'loss'], True, history.history)
-    
-
-    print '*' * 20
-    print 'Evaluating best model...'
-    sys.stdout.flush()    
-    model = load_model(BEST_MODEL)
-    metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
-    print metrics
-    
-    predictions = model.predict(X_test, BATCH_SIZE)
-    correct = [0] * 5
-    prediction_range = 5
-    for i, prediction in enumerate(predictions):
-        correct_answer = y_test[i].tolist().index(1)       
-        best_n = np.sort(prediction)[::-1][:prediction_range]
-        for j in range(prediction_range):
-            if prediction.tolist().index(best_n[j]) == correct_answer:
-                for k in range(j,prediction_range):
-                    correct[k] += 1 
-    
-    accuracies = []                   
-    for i in range(prediction_range):
-        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
-        accuracies.append((correct[i] * 1.0) / len(y_test))
-    
-    print accuracies
-
-    print '************ FIN ************\n' * 3  
 
 
 if __name__ == "__main__":
     main(sys.argv)
+
