@@ -207,7 +207,9 @@ def create_embedding_matrix(tokenizer):
     
 # embeddings shape: [none, INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH]   
 # attention shape: [none, INPUT_ACTIONS]
-def apply_attention (embeddings, attention):
+def apply_attention (layers):
+    embeddings = layers[0] 
+    attention = layers[1] 
     #sanity check
     assert len(embeddings.shape) == 3
     assert len(attention.shape) == 2
