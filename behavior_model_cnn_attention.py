@@ -284,8 +284,9 @@ def main(argv):
     bidirectional_gru = Bidirectional(GRU(512, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
     dense_att_1 = Dense(256, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
+    reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2)
     #apply the attention
-    apply_att = Lambda(apply_attention)([embedding_actions, dense_att_2])
+    apply_att = Multiply()([embedding_actions, reshape_att])
 #    apply_att = Dot(axes=(2,1))([embedding_actions, dense_att_2])
     #convolutions
 #    reshape = Reshape((-1, 5, 50), name = 'reshape')(apply_att)
