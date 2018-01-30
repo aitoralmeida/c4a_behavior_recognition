@@ -214,6 +214,11 @@ def apply_attention (layers):
     assert len(embeddings.shape) == 3
     assert len(attention.shape) == 2
     assert embeddings.shape[1] == attention.shape[1]
+    
+    print 'embeddings', embeddings.shape
+    print embeddings.shape[0], embeddings.shape[1], embeddings.shape[2]
+    print 'attention', attention.shape
+    print attention.shape[0], attention.shape[1], attention.shape[2]
   
     for i in range(embeddings.shape[0]):
         for j in range(embeddings.shape[1]):
