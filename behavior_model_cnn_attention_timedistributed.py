@@ -263,6 +263,8 @@ def main(argv):
     #the embedding layer is initialized with the word2vec weights
     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
     #attention mechanism
+    # TODO test bidirectional
+    # TODO dropout and recurrent_dropout?
     gru = GRU(128, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), return_sequences=True, name='bidirectional_gru')(embedding_actions)
     # total units = 128 * INPUT_ACTIONS
     dense_att_1 = TimeDistributed(Dense(128, activation = 'tanh',name = 'dense_att_1'))(gru)
