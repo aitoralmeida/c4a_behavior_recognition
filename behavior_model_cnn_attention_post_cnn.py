@@ -279,11 +279,12 @@ def main(argv):
     #attention mechanism
     dense_att_1 = Dense(128, activation='tanh', name='dense_att_1')(flatten)
     # total units = 1 * INPUT_ACTIONS
-    dense_att_2 = Dense(200*4, activation='softmax')(dense_att_1)
+    dense_att_2 = Dense(200*4, activation='softmax', name='dense_att_2')(dense_att_1)
     # apply the attention to the flatten
-    apply_att = Multiply()([flatten, dense_att_2])
+    apply_att = Multiply(name='apply_att')([flatten, dense_att_2])
+    #reshape_att = Reshape((800,),name='reshape_att')(apply_att)
     #end attention
-    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
+    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(apply_att)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
     #action prediction
     output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
