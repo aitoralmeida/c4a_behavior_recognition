@@ -265,7 +265,7 @@ def main(argv):
     #attention mechanism
     # TODO test bidirectional
     # TODO dropout and recurrent_dropout?
-    gru = GRU(128, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), return_sequences=True, name='bidirectional_gru')(embedding_actions)
+    gru = Bidirectional(GRU(128, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), return_sequences=True, name='bidirectional_gru'), merge_mode='ave')(embedding_actions)
     # total units = 128 * INPUT_ACTIONS
     dense_att_1 = TimeDistributed(Dense(128, activation = 'tanh',name = 'dense_att_1'))(gru)
     # total units = 1 * INPUT_ACTIONS
