@@ -268,12 +268,12 @@ def main(argv):
     # total units = 128 * INPUT_ACTIONS
     dense_att_1 = Dense(128, activation = 'tanh',name = 'dense_att_1')(embedding_actions)
     # total units = 1 * INPUT_ACTIONS
-    dense_att_2 = Dense(INPUT_ACTIONS, activation='softmax')(dense_att_1)
+    dense_att_2 = Dense(1, activation='softmax', name='dense_att_2')(dense_att_1)
     # to undo the time distribution and have 1 value for each action
     #so we can multiply it with embeddings
-    reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2)
+    #reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2)
     #apply the attention to the embeddings
-    apply_att = Multiply()([embedding_actions, reshape_att])
+    apply_att = Multiply()([embedding_actions, dense_att_2])
     #add channel dimension for the CNNs
     reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) 
     #branching convolutions
