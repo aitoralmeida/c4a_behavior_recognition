@@ -11,7 +11,7 @@ from gensim.models import Word2Vec
 import h5py
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
+from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, LSTM, MaxPooling2D, Multiply, Reshape
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
 
