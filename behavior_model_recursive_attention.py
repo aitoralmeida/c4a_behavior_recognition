@@ -274,7 +274,7 @@ def main(argv):
     dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
     dense_2 = Dense(1024, activation='relu', name='dense_2')(drop_1)
-    drop_2 = Dropout(0.8, name='drop_1')(dense_2)
+    drop_2 = Dropout(0.8, name='drop_2')(dense_2)
     #action prediction
     output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
 
