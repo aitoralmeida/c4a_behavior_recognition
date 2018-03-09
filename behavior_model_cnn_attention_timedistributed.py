@@ -293,10 +293,8 @@ def main(argv):
     flatten = Flatten(name = 'flatten')(merged)
     dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
-    dense_2 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
-    drop_2 = Dropout(0.8, name = 'drop_1')(dense_2)
     #action prediction
-    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
+    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
 
     model = Model(input=[input_actions], output=[output_actions])
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
