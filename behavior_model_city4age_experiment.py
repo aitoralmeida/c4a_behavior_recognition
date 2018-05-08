@@ -181,10 +181,7 @@ Output:
     
 """
 def create_embedding_matrix(tokenizer):
-    if TIME:
-        model = Word2Vec.load(WORD2VEC_TIME_MODEL)    
-    else:
-        model = Word2Vec.load(WORD2VEC_MODEL)    
+    model = Word2Vec.load(WORD2VEC_MODEL)    
     action_index = tokenizer.word_index
     embedding_matrix = np.zeros((len(action_index) + 1, ACTION_EMBEDDING_LENGTH))
     unknown_words = {}    
