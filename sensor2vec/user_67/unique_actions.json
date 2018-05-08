@@ -1,1 +1,1 @@
-["home_enter", "culturalplace_exit", "walking_stop", "walking_start", "culturalplace_enter", "still_start", "friendhome_exit", "supermarket_exit", "home_exit", "friendhome_enter", "supermarket_enter", "bus_enter", "car_exit", "car_enter", "still_stop", "bus_exit", "walking_in"]
+["busenter", "carenter", "walkingstart", "busexit", "friendhomeenter", "homeenter", "culturalplaceenter", "culturalplaceexit", "friendhomeexit", "walkingin", "walkingstop", "carexit", "supermarketenter", "homeexit", "stillstart", "supermarketexit", "stillstop"]

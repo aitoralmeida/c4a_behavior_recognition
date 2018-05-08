@@ -53,7 +53,7 @@ def process_csv():
         for row in reader:
             for element in row:
                 print element
-                action = element
+                action = element.replace('_', '')
                 actions_csv += action + "\n"
                 actions += action + SEP  
                 actions_set.add(action)
