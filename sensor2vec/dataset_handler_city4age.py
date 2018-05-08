@@ -22,7 +22,8 @@ UNIQUE_ACTIONS = BASE_DIR + 'unique_actions.json'
 ACTIONS_MODEL = BASE_DIR + 'actions.model'
 # Vector values for each action
 ACTIONS_VECTORS = BASE_DIR + 'actions_vectors.json'
-ACTION_TEXT = "action.txt"
+ACTION_TEXT = BASE_DIR + "actions.txt"
+ACTION_TEXT_CSV = BASE_DIR + "actions.csv"
 
 
 # When there is no activity
@@ -44,16 +45,22 @@ DELIMITER = ','
 # Generates the text file from the csv
 def process_csv():
     actions = ''    
+    actions_csv = ''    
     actions_set = set()
     with open(DATASET, 'rb') as csvfile: 
         print 'Processing:', DATASET
-        reader = csv.reader(csvfile, delimiter=DELIMITER)        
+        reader = csv.reader(csvfile, delimiter=DELIMITER)  
         for row in reader:
-            action = row[0]
-            actions += action + SEP  
-            actions_set.add(action)
+            for element in row:
+                print element
+                action = element
+                actions_csv += action + "\n"
+                actions += action + SEP  
+                actions_set.add(action)
     with open(ACTION_TEXT, 'w') as textfile: 
         textfile.write(actions)     
+    with open(ACTION_TEXT_CSV, 'w') as textfile:
+        textfile.write(actions_csv)
     json.dump(list(actions_set), open(UNIQUE_ACTIONS, 'w'))
     print 'Text file saved'
 
