@@ -25,7 +25,7 @@ import pandas as pd
 # Kasteren dataset
 DIR = './sensor2vec/user_67/'
 # Dataset with vectors but without the action timestamps
-DATASET_CSV = DIR + 'user_67_actions_final.csv'
+DATASET_CSV = DIR + 'actions.csv'
 # List of unique actions in the dataset
 UNIQUE_ACTIONS = DIR + 'unique_actions.json'
 # Action vectors
