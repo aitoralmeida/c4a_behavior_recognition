@@ -109,7 +109,7 @@ Output:
 def prepare_x_y(df, unique_actions):
     #recover all the actions in order.
     actions = df['action'].values
-#    print actions.tolist()
+    print actions.tolist()
 #    print actions.tolist().index('HallBedroomDoor_1')
     # Use tokenizer to generate indices for every action
     # Very important to put lower=False, since the Word2Vec model
@@ -117,7 +117,7 @@ def prepare_x_y(df, unique_actions):
     tokenizer = Tokenizer(lower=False)
     tokenizer.fit_on_texts(actions.tolist())
     action_index = tokenizer.word_index  
-#    print action_index
+    print action_index
     #translate actions to indexes
     actions_by_index = []
     
