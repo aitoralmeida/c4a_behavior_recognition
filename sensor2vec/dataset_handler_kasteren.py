@@ -67,7 +67,7 @@ def process_csv(none=False):
     activities_set = set()
     actions_set = set()
     with open(DATASET, 'rb') as csvfile: # This only works with DATASET_KASTEREN now
-        print 'Processing:', DATASET
+        print(('Processing:', DATASET))
         reader = csv.reader(csvfile, delimiter=DELIMITER)        
         i = 0
         for row in reader:
@@ -85,20 +85,20 @@ def process_csv(none=False):
                 activities_set.add(activity)
                 actions_set.add(action)
             if i % 10000 == 0:
-                print '  -Actions processed:', i
-        print 'Total actions processed:', i
+                print(('  -Actions processed:', i))
+        print(('Total actions processed:', i))
     
     with open(ACTION_TEXT, 'w') as textfile: 
         textfile.write(actions)     
     json.dump(list(activities_set), open(UNIQUE_ACTIVITIES, 'w'))
     json.dump(list(actions_set), open(UNIQUE_ACTIONS, 'w'))
-    print 'Text file saved'
+    print('Text file saved')
 
 # Generates a CSV dataset with periods
 def transform_csv_to_periods():
     with open(DATASET, 'rb') as csvfile:
         with open(DATASET_ACTION_PERIODS, 'wb') as new_dataset:
-              print 'Processing:', DATASET
+              print(('Processing:', DATASET))
               reader = csv.reader(csvfile, delimiter=DELIMITER)   
               writer = csv.writer(new_dataset, delimiter=DELIMITER)
               i = 0
@@ -114,7 +114,7 @@ def transform_csv_to_periods():
                 action_period = action + str(period)
                 new_row = [date, instant, sensor, action_period, event, activity]
                 writer.writerow(new_row)
-    print 'Total actions processed:', i
+    print(('Total actions processed:', i))
     
 # Generates the text file from the csv taking into account the time periods
 def process_time_csv(none=True):
@@ -123,7 +123,7 @@ def process_time_csv(none=True):
     activities_set = set()
     actions_set = set()
     with open(DATASET_ACTION_PERIODS, 'rb') as csvfile:
-        print 'Processing:', DATASET
+        print(('Processing:', DATASET))
         reader = csv.reader(csvfile, delimiter=DELIMITER)   
         i = 0
         for row in reader:
@@ -143,14 +143,14 @@ def process_time_csv(none=True):
                 activities_set.add(activity)
                 actions_set.add(action)
             if i % 10000 == 0:
-                print '  -Actions processed:', i
-        print 'Total actions processed:', i
+                print(('  -Actions processed:', i))
+        print(('Total actions processed:', i))
     
     with open(ACTION_TIME_TEXT, 'w') as textfile: 
         textfile.write(actions)     
     json.dump(list(activities_set), open(UNIQUE_ACTIVITIES, 'w'))
     json.dump(list(actions_set), open(UNIQUE_TIME_ACTIONS, 'w'))
-    print 'Text file saved'
+    print('Text file saved')
     
 # Transforms a time instant (e.g. 09:33:41) to a period
 def instant_to_period(instant, period_mins=30):
@@ -163,9 +163,9 @@ def instant_to_period(instant, period_mins=30):
 
 # creates a json file with the action vectors from the gensim model
 def create_vector_file():
-    print 'Creating the vector file...'
+    print('Creating the vector file...')
     actions = json.load(open(UNIQUE_ACTIONS, 'r'))
-    print 'Total unique actions:', len(actions)
+    print(('Total unique actions:', len(actions)))
     model = Word2Vec.load(ACTIONS_MODEL)
     actions_vectors = {}
     for action in actions:
@@ -176,12 +176,12 @@ def create_vector_file():
         actions_vectors[action] = action_values
      
     json.dump(actions_vectors, open(ACTIONS_VECTORS, 'w'), indent=2)
-    print 'Saved action vectors'
+    print('Saved action vectors')
 
 # Processes the csv and orders the activities in a json    
 def order_activities(none = False):
     with open(DATASET, 'rb') as csvfile:
-        print 'Processing:', DATASET
+        print(('Processing:', DATASET))
         reader = csv.reader(csvfile)        
         i = 0        
         current_activity = {
@@ -215,31 +215,31 @@ def order_activities(none = False):
                     }
                     current_activity['actions'].append(action_data)
             if i % 10000 == 0:
-                print 'Actions processed:', i
+                print(('Actions processed:', i))
         json.dump(activities, open(ACTIVITIES_ORDERED, 'w'), indent=1)
-    print 'Ordered activities'
+    print('Ordered activities')
     
 def median(lst):
     return numpy.median(numpy.array(lst))
  
 # Statistics about the activities   
 def calculate_statistics():
-    print 'Calculating statistics'
+    print('Calculating statistics')
     activities = json.load(open(ACTIVITIES_ORDERED, 'r'))
     total_activities = len(activities)
-    print 'Total activities:', total_activities
+    print(('Total activities:', total_activities))
     action_lengths = []
     for activity in activities:
         action_lengths.append(len(activity['actions']))
-    print 'Avg activity lenght:', sum(action_lengths)/total_activities
-    print 'Median activity lenght:', median(action_lengths)
-    print 'Longest activity:', max(action_lengths)
-    print 'Shortest activity:', min(action_lengths)
+    print(('Avg activity lenght:', sum(action_lengths)/total_activities))
+    print(('Median activity lenght:', median(action_lengths)))
+    print(('Longest activity:', max(action_lengths)))
+    print(('Shortest activity:', min(action_lengths)))
     distribution = Counter(action_lengths)
-    print 'Distribution:', json.dumps(distribution, indent=2)
+    print(('Distribution:', json.dumps(distribution, indent=2)))
     
 def create_vector_dataset_no_time():
-    print 'Creating dataset...'
+    print('Creating dataset...')
     dataset = []
     action_vectors = json.load(open(ACTIONS_VECTORS, 'r'))
     unique_activities = json.load(open(UNIQUE_ACTIVITIES, 'r'))
@@ -262,9 +262,9 @@ def create_vector_dataset_no_time():
               training_example['actions'].append([0.0] * ACTION_MAX_LENGHT)
               
         dataset.append(training_example)
-    print 'Writing file'
+    print('Writing file')
     json.dump(dataset, open(DATASET_NO_TIME,'w'))
-    print 'Created dataset'
+    print('Created dataset')
     
 def create_vector_dataset_no_time_2_channels():
     single_dataset = json.load(open(DATASET_NO_TIME, 'r'))
@@ -281,14 +281,14 @@ def create_vector_dataset_no_time_2_channels():
             }                       
             dataset.append(training_example)
             previous_activity = activity
-    print 'Writing file'
+    print('Writing file')
     json.dump(dataset, open(DATASET_NO_TIME_2_CHANNELS,'w'))
-    print 'Created dataset'           
+    print('Created dataset')           
         
     
     
 if __name__ == '__main__':
-    print 'Start...'
+    print('Start...')
 #    process_csv(True)
     process_time_csv(none=True)
 #    create_vector_file()
@@ -296,7 +296,7 @@ if __name__ == '__main__':
 #    calculate_statistics()
 #    create_vector_dataset_no_time()
 #    create_vector_dataset_no_time_2_channels()
-    print 'Fin'
+    print('Fin')
 
 
 

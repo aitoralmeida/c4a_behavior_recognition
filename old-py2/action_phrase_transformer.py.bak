@@ -14,7 +14,7 @@ BY_PERIOD = False
 
 print('Starting...')
 with open(DATASET, 'rb') as csvfile:
-    print(('Processing:', DATASET))
+    print('Processing:', DATASET)
     reader = csv.reader(csvfile)
     phrases = []
     current_phrase = []
@@ -44,9 +44,9 @@ with open(DATASET, 'rb') as csvfile:
             current_activity = activity
             current_phrase = [action]  
         if i % 100000 == 0:
-            print(('Actions processed:', i))
+            print('Actions processed:', i)
 
-print(('Total phrases:', len(phrases))) 
+print('Total phrases:', len(phrases)) 
 print('Saving text file...')
 total = 0
 length = 0
@@ -57,6 +57,6 @@ with open(TEXT, 'w') as textfile:
         phrase_text = ' '.join(phrase)
         phrase_text = phrase_text + '\n'
         textfile.write(phrase_text)         
-print(('Average activity length:',  length / total))        
+print('Average activity length:',  length / total)        
         
 print('FIN')

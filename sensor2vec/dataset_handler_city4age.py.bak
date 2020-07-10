@@ -48,7 +48,7 @@ def process_csv():
     actions_csv = ''    
     actions_set = set()
     with open(DATASET, 'rb') as csvfile: 
-        print(('Processing:', DATASET))
+        print('Processing:', DATASET)
         reader = csv.reader(csvfile, delimiter=DELIMITER)  
         for row in reader:
             for element in row:

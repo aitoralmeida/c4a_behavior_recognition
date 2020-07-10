@@ -113,9 +113,9 @@ def prepare_x_y(df, unique_actions):
     #recover all the actions in order.
     actions = df['action'].values
     timestamps = df.index.tolist()
-    print 'total actions', len(actions)
-    print 'total timestaps', len(timestamps)
-    print timestamps[0]
+    print(('total actions', len(actions)))
+    print(('total timestaps', len(timestamps)))
+    print((timestamps[0]))
     # Use tokenizer to generate indices for every action
     # Very important to put lower=False, since the Word2Vec model
     # has the action names with some capital letters
@@ -163,7 +163,7 @@ def create_embedding_matrix(tokenizer):
     action_index = tokenizer.word_index
     embedding_matrix = np.zeros((len(action_index) + 1, ACTION_EMBEDDING_LENGTH))
     unknown_words = {}    
-    for action, i in action_index.items():
+    for action, i in list(action_index.items()):
         try:            
             embedding_vector = model[action]
             embedding_matrix[i] = embedding_vector            
@@ -172,8 +172,8 @@ def create_embedding_matrix(tokenizer):
                 unknown_words[action] += 1
             else:
                 unknown_words[action] = 1
-    print "Number of unknown tokens: " + str(len(unknown_words))
-    print unknown_words
+    print(("Number of unknown tokens: " + str(len(unknown_words))))
+    print(unknown_words)
     
     return embedding_matrix
     
@@ -219,8 +219,8 @@ def transform_time_cyclic(timestamp, weekday):
 
 
 def main(argv):
-    print '*' * 20
-    print 'Loading dataset...'
+    print(('*' * 20))
+    print('Loading dataset...')
     sys.stdout.flush()
     #dataset of activities
     DATASET = DATASET_CSV
@@ -231,8 +231,8 @@ def main(argv):
     unique_actions = json.load(open(UNIQUE_ACTIONS, 'r'))
     total_actions = len(unique_actions)
     
-    print '*' * 20
-    print 'Preparing dataset...'
+    print(('*' * 20))
+    print('Preparing dataset...')
     sys.stdout.flush()
     # Prepare sequences using action indices
     # Each action will be an index which will point to an action vector
@@ -251,10 +251,10 @@ def main(argv):
     X_times_test = X_times[:limit]
     y_train = y[limit:]
     y_test = y[:limit]
-    print 'Different actions:', total_actions
-    print 'Total examples:', total_examples
-    print 'Train examples:', len(X_actions_train), len(y_train) 
-    print 'Test examples:', len(X_actions_test), len(y_test)
+    print(('Different actions:', total_actions))
+    print(('Total examples:', total_examples))
+    print(('Train examples:', len(X_actions_train), len(y_train))) 
+    print(('Test examples:', len(X_actions_test), len(y_test)))
     sys.stdout.flush()  
     X_actions_train = np.array(X_actions_train)
     X_times_train = np.array(X_times_train)
@@ -262,13 +262,13 @@ def main(argv):
     X_actions_test = np.array(X_actions_test)
     X_times_test = np.array(X_times_test)
     y_test = np.array(y_test)
-    print 'Shape (X,y):'
-    print X_actions_train.shape
-    print X_times_train.shape
-    print y_train.shape
+    print('Shape (X,y):')
+    print((X_actions_train.shape))
+    print((X_times_train.shape))
+    print((y_train.shape))
    
-    print '*' * 20
-    print 'Building model...'
+    print(('*' * 20))
+    print('Building model...')
     sys.stdout.flush()
     # Actions embeddings branch
     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
@@ -293,28 +293,28 @@ def main(argv):
     model = Model(input=[input_actions, input_time], output=[output_actions])
         
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
-    print(model.summary())
+    print((model.summary()))
     sys.stdout.flush()
     
-    print '*' * 20
-    print 'Training model...'    
+    print(('*' * 20))
+    print('Training model...')    
     sys.stdout.flush()
     BATCH_SIZE = 128
     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
     history = model.fit([X_actions_train, X_times_train], y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=([X_actions_test, X_times_test], y_test), shuffle=False, callbacks=[checkpoint])
 
-    print '*' * 20
-    print 'Plotting history...'
+    print(('*' * 20))
+    print('Plotting history...')
     sys.stdout.flush()
     plot_training_info(['accuracy', 'loss'], True, history.history)
     
 
-    print '*' * 20
-    print 'Evaluating best model...'
+    print(('*' * 20))
+    print('Evaluating best model...')
     sys.stdout.flush()    
     model = load_model(BEST_MODEL)
     metrics = model.evaluate([X_actions_test, X_times_test], y_test, batch_size=BATCH_SIZE)
-    print metrics
+    print(metrics)
     
     predictions = model.predict([X_actions_test, X_times_test], BATCH_SIZE)
     correct = [0] * 5
@@ -329,12 +329,12 @@ def main(argv):
     
     accuracies = []                   
     for i in range(prediction_range):
-        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+        print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
         accuracies.append((correct[i] * 1.0) / len(y_test))
     
-    print accuracies
+    print(accuracies)
     
-    print '************ FIN ************\n' * 3  
+    print(('************ FIN ************\n' * 3))  
 
 
 if __name__ == "__main__":

@@ -109,7 +109,7 @@ Output:
 def prepare_x_y(df, unique_actions):
     #recover all the actions in order.
     actions = df['action'].values
-    print actions.tolist()
+    print((actions.tolist()))
 #    print actions.tolist().index('HallBedroomDoor_1')
     # Use tokenizer to generate indices for every action
     # Very important to put lower=False, since the Word2Vec model
@@ -117,11 +117,11 @@ def prepare_x_y(df, unique_actions):
     tokenizer = Tokenizer(lower=False)
     tokenizer.fit_on_texts(actions.tolist())
     action_index = tokenizer.word_index  
-    print action_index
+    print(action_index)
     #translate actions to indexes
     actions_by_index = []
     
-    print len(actions)
+    print((len(actions)))
     for action in actions:
 #        print action
         actions_by_index.append(action_index[action])
@@ -185,7 +185,7 @@ def create_embedding_matrix(tokenizer):
     action_index = tokenizer.word_index
     embedding_matrix = np.zeros((len(action_index) + 1, ACTION_EMBEDDING_LENGTH))
     unknown_words = {}    
-    for action, i in action_index.items():
+    for action, i in list(action_index.items()):
         try:            
             embedding_vector = model[action]
             embedding_matrix[i] = embedding_vector            
@@ -194,8 +194,8 @@ def create_embedding_matrix(tokenizer):
                 unknown_words[action] += 1
             else:
                 unknown_words[action] = 1
-    print "Number of unknown tokens: " + str(len(unknown_words))
-    print unknown_words
+    print(("Number of unknown tokens: " + str(len(unknown_words))))
+    print(unknown_words)
     
     return embedding_matrix
  
@@ -204,8 +204,8 @@ def create_embedding_matrix(tokenizer):
 
 
 def main(argv):
-    print '*' * 20
-    print 'Loading dataset...'
+    print(('*' * 20))
+    print('Loading dataset...')
     sys.stdout.flush()
     DATASET = DATASET_CSV
     df_dataset = pd.read_csv(DATASET)
@@ -215,8 +215,8 @@ def main(argv):
     unique_actions = json.load(open(UNIQUE_ACTIONS, 'r'))
     total_actions = len(unique_actions)
     
-    print '*' * 20
-    print 'Preparing dataset...'
+    print(('*' * 20))
+    print('Preparing dataset...')
     sys.stdout.flush()
     if EMBEDDINGS:
         # Prepare sequences using action indices
@@ -235,21 +235,21 @@ def main(argv):
     X_test = X[:limit]
     y_train = y[limit:]
     y_test = y[:limit]
-    print 'Different actions:', total_actions
-    print 'Total examples:', total_examples
-    print 'Train examples:', len(X_train), len(y_train) 
-    print 'Test examples:', len(X_test), len(y_test)
+    print(('Different actions:', total_actions))
+    print(('Total examples:', total_examples))
+    print(('Train examples:', len(X_train), len(y_train))) 
+    print(('Test examples:', len(X_test), len(y_test)))
     sys.stdout.flush()  
     X_train = np.array(X_train)
     y_train = np.array(y_train)
     X_test = np.array(X_test)
     y_test = np.array(y_test)
-    print 'Shape (X,y):'
-    print X_train.shape
-    print y_train.shape
+    print('Shape (X,y):')
+    print((X_train.shape))
+    print((y_train.shape))
    
-    print '*' * 20
-    print 'Building model...'
+    print(('*' * 20))
+    print('Building model...')
     sys.stdout.flush()
     model = Sequential()
     if EMBEDDINGS:
@@ -275,28 +275,28 @@ def main(argv):
     model.add(Activation('softmax', name = 'softmax'))
     
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
-    print(model.summary())
+    print((model.summary()))
     sys.stdout.flush()
     
-    print '*' * 20
-    print 'Training model...'    
+    print(('*' * 20))
+    print('Training model...')    
     sys.stdout.flush()
     BATCH_SIZE = 128
     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
     history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, nb_epoch=1000, validation_data=(X_test, y_test), shuffle=False, callbacks=[checkpoint])
 
-    print '*' * 20
-    print 'Plotting history...'
+    print(('*' * 20))
+    print('Plotting history...')
     sys.stdout.flush()
     plot_training_info(['accuracy', 'loss'], True, history.history)
     
 
-    print '*' * 20
-    print 'Evaluating best model...'
+    print(('*' * 20))
+    print('Evaluating best model...')
     sys.stdout.flush()    
     model = load_model(BEST_MODEL)
     metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
-    print metrics
+    print(metrics)
     
     predictions = model.predict(X_test, BATCH_SIZE)
     correct = [0] * 5
@@ -311,12 +311,12 @@ def main(argv):
     
     accuracies = []                   
     for i in range(prediction_range):
-        print '%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))
+        print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
         accuracies.append((correct[i] * 1.0) / len(y_test))
     
-    print accuracies
+    print(accuracies)
     
-    print '************ FIN ************\n' * 3  
+    print(('************ FIN ************\n' * 3))  
 
 
 if __name__ == "__main__":
