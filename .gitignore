@@ -90,3 +90,6 @@ ENV/
 
 # Project config
 .idea/
+
+# Results
+_data/
