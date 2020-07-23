@@ -5,6 +5,7 @@ from gensim.models import Word2Vec
 
 import h5py
 
+import tensorflow as tf
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
 from keras.models import load_model, Model
@@ -248,90 +249,111 @@ def main(argv):
     print('Shape (X,y):')
     print((X_train.shape))
     print((y_train.shape))
+
+    executions = 100
+    accuracies_avg = np.array([0, 0, 0, 0, 0])
+    accuracies_best = np.array([0, 0, 0, 0, 0])
+
+    for i in range(0, executions):
    
-    print(('*' * 20))
-    print('Building model...')
-    sys.stdout.flush()
+        print(('*' * 20))
+        print('Building model...')
+        sys.stdout.flush()
 
-    #input pipeline
-    input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
-    embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
-    #attention mechanism
-    bidirectional_gru = Bidirectional(GRU(512, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
-    dense_att_1 = Dense(512, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
-    dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
-    reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2) #so we can multiply it with embeddings
-    #apply the attention
-    apply_att = Multiply()([embedding_actions, reshape_att])
-    #convolutions
-    reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) #add channel dimension for the CNNs
-    #branching convolutions
-    ngram_2 = Convolution2D(200, (2, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_2')(reshape)
-    maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
-    ngram_3 = Convolution2D(200, (3, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_3')(reshape)
-    maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
-    ngram_4 = Convolution2D(200, (4, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_4')(reshape)
-    maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
-    ngram_5 = Convolution2D(200, (5, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_5')(reshape)
-    maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
-    #1 branch again
-    merged = Concatenate(axis=2)([maxpool_2, maxpool_3, maxpool_4, maxpool_5])
-    flatten = Flatten(name = 'flatten')(merged)
-    #attention mechanism
-    dense_att_3 = Dense(128, activation='tanh', name='dense_att_3')(flatten)
-    # total units = 1 * INPUT_ACTIONS
-    dense_att_4 = Dense(200*4, activation='softmax', name='dense_att_4')(dense_att_3)
-    # apply the attention to the flatten
-    apply_att_2 = Multiply(name='apply_att_2')([flatten, dense_att_4])
-    #end attention
-    dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(apply_att_2)
-    drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
-    #action prediction
-    output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
+        #input pipeline
+        input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
+        embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
+        #attention mechanism
+        bidirectional_gru = Bidirectional(GRU(50, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
+        dense_att_1 = Dense(50, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
+        dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
+        reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2) #so we can multiply it with embeddings
+        #apply the attention
+        apply_att = Multiply()([embedding_actions, reshape_att])
+        #convolutions
+        reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) #add channel dimension for the CNNs
+        #branching convolutions
+        ngram_2 = Convolution2D(200, (2, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_2')(reshape)
+        maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
+        ngram_3 = Convolution2D(200, (3, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_3')(reshape)
+        maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
+        ngram_4 = Convolution2D(200, (4, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_4')(reshape)
+        maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
+        ngram_5 = Convolution2D(200, (5, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_5')(reshape)
+        maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
+        #1 branch again
+        merged = Concatenate(axis=2)([maxpool_2, maxpool_3, maxpool_4, maxpool_5])
+        flatten = Flatten(name = 'flatten')(merged)
+        #attention mechanism
+        dense_att_3 = Dense(50, activation='tanh', name='dense_att_3')(flatten)
+        # total units = 1 * INPUT_ACTIONS
+        dense_att_4 = Dense(200*4, activation='softmax', name='dense_att_4')(dense_att_3)
+        # apply the attention to the flatten
+        apply_att_2 = Multiply(name='apply_att_2')([flatten, dense_att_4])
+        #end attention
+        dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(apply_att_2)
+        drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
+        #action prediction
+        output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
 
-    model = Model(input_actions, output_actions)
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
-    print((model.summary()))
-    sys.stdout.flush()
+        model = Model(input_actions, output_actions)
+        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
+        print((model.summary()))
+        sys.stdout.flush()
+        
+        print(('*' * 20))
+        print('Training model...')    
+        sys.stdout.flush()
+        BATCH_SIZE = 128
+        checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_accuracy', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
+        early_stopping = EarlyStopping(monitor='val_loss', patience=50)
+        history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint, early_stopping])
+
+        print(('*' * 20))
+        print('Plotting history...')
+        sys.stdout.flush()
+        plot_training_info(['accuracy', 'loss'], True, history.history)
+
+        print(('*' * 20))
+        print('Evaluating best model...')
+        sys.stdout.flush()    
+        model = load_model(BEST_MODEL)
+        metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
+        print(metrics)
+        
+        predictions = model.predict(X_test, BATCH_SIZE)
+        correct = [0] * 5
+        prediction_range = 5
+        for i, prediction in enumerate(predictions):
+            correct_answer = y_test[i].tolist().index(1)       
+            best_n = np.sort(prediction)[::-1][:prediction_range]
+            for j in range(prediction_range):
+                if prediction.tolist().index(best_n[j]) == correct_answer:
+                    for k in range(j,prediction_range):
+                        correct[k] += 1 
+        
+        accuracies = []                   
+        for i in range(prediction_range):
+            print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
+            accuracies.append((correct[i] * 1.0) / len(y_test))
+        
+        print(accuracies)
+        accuracies_best = np.max([accuracies_best, np.array(accuracies)], axis=0)
+        accuracies_avg = np.array(accuracies) + accuracies_avg
+
+        # https://www.tensorflow.org/api_docs/python/tf/keras/backend/clear_session
+        tf.keras.backend.clear_session()
+
+        print(('************ FIN ************\n' * 3))
     
-    print(('*' * 20))
-    print('Training model...')    
-    sys.stdout.flush()
-    BATCH_SIZE = 128
-    checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_accuracy', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-    history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint])
+    accuracies_avg = [x / executions for x in accuracies_avg]
 
-    print(('*' * 20))
-    print('Plotting history...')
-    sys.stdout.flush()
-    plot_training_info(['accuracy', 'loss'], True, history.history)
+    print(('************ AVG ************\n'))
+    print(accuracies_avg)
+    print(('************ BEST ************\n'))
+    print(accuracies_best)
 
-    print(('*' * 20))
-    print('Evaluating best model...')
-    sys.stdout.flush()    
-    model = load_model(BEST_MODEL)
-    metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
-    print(metrics)
-    
-    predictions = model.predict(X_test, BATCH_SIZE)
-    correct = [0] * 5
-    prediction_range = 5
-    for i, prediction in enumerate(predictions):
-        correct_answer = y_test[i].tolist().index(1)       
-        best_n = np.sort(prediction)[::-1][:prediction_range]
-        for j in range(prediction_range):
-            if prediction.tolist().index(best_n[j]) == correct_answer:
-                for k in range(j,prediction_range):
-                    correct[k] += 1 
-    
-    accuracies = []                   
-    for i in range(prediction_range):
-        print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
-        accuracies.append((correct[i] * 1.0) / len(y_test))
-    
-    print(accuracies)
-
-    print(('************ FIN ************\n' * 3))  
+    print(('************ FIN MEDIA Y MEJOR RESULTADO ************\n' * 3))
 
 if __name__ == "__main__":
     main(sys.argv)
