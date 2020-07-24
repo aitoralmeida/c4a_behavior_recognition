@@ -6,7 +6,7 @@ from gensim.models import Word2Vec
 import h5py
 
 import tensorflow as tf
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.layers import Dot, Bidirectional, Attention, Average, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
@@ -287,8 +287,8 @@ def main(argv):
         maxpool_3_attention = Attention()([maxpool_3, maxpool_avg])
         maxpool_4_attention = Attention()([maxpool_4, maxpool_avg])
         maxpool_5_attention = Attention()([maxpool_5, maxpool_avg])
-        concat = Concatenate(axis=2)([maxpool_2_attention, maxpool_3_attention, maxpool_4_attention, maxpool_5_attention])
-        flatten = Flatten()(concat)
+        merged = Concatenate(axis=2)([maxpool_2_attention, maxpool_3_attention, maxpool_4_attention, maxpool_5_attention])
+        flatten = Flatten()(merged)
         dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
         drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
         #action prediction
