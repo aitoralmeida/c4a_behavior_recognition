@@ -14,8 +14,8 @@ RUN pip3 install -U pandas
 RUN pip3 install -U matplotlib
 RUN pip3 install -U networkx
 RUN pip3 install -U sklearn
-RUN pip3 install -U keras keras-bert keras-transformer
-RUN pip3 install -U tf-nightly imutils
+RUN pip3 install -U keras keras-bert keras-transformer keras-self-attention
+RUN pip3 install -U tensorflow imutils
 RUN pip3 install -U Pillow
 RUN pip3 install -U opencv-python
 RUN pip3 install -U gensim wheel twine nose pycodestyle coverage
