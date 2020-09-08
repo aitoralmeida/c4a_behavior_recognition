@@ -7,9 +7,10 @@ import h5py
 
 import tensorflow as tf
 from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.layers import Dot, LSTM, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
+from keras.layers import Dot, Bidirectional, Concatenate, Convolution2D, Dense, Dropout, Embedding, Flatten, GRU, Input, Lambda, MaxPooling2D, Multiply, Reshape
 from keras.models import load_model, Model
 from keras.preprocessing.text import Tokenizer
+from keras import Sequential
 
 import matplotlib
 matplotlib.use('Agg')
@@ -17,6 +18,9 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+
+import keras
+from keras_bert import get_base_dict, get_model, compile_model, gen_batch_inputs
 
 # Kasteren dataset
 DIR = '/sensor2vec/kasteren_dataset/'
@@ -34,7 +38,7 @@ UNIQUE_TIME_ACTIONS = DIR + 'unique_time_actions.json'
 # Action vectors
 #ACTION_VECTORS = DIR + 'actions_vectors.json'
 # Word2Vec model
-WORD2VEC_MODEL = DIR + 'actions_w_1.model'
+WORD2VEC_MODEL = DIR + 'actions.model'
 # Word2Vec model taking into account time periods
 WORD2VEC_TIME_MODEL = DIR + 'actions_time.model'
 
@@ -249,93 +253,182 @@ def main(argv):
     print('Shape (X,y):')
     print((X_train.shape))
     print((y_train.shape))
+
+    print(X_train)
+    print(y_train)
+
+    # A toy input example
+    sentence_pairs = [
+        [['all', 'work', 'and', 'no', 'play'], ['makes', 'jack', 'a', 'dull', 'boy']],
+        [['from', 'the', 'day', 'forth'], ['my', 'arm', 'changed']],
+        [['and', 'a', 'voice', 'echoed'], ['power', 'give', 'me', 'more', 'power']],
+    ]
+
+    # Build token dictionary
+    token_dict = get_base_dict()  # A dict that contains some special tokens
+    for pairs in sentence_pairs:
+        for token in pairs[0] + pairs[1]:
+            if token not in token_dict:
+                token_dict[token] = len(token_dict)
+    token_list = list(token_dict.keys())  # Used for selecting a random word
+
+    # Build & train the model
+    model = get_model(
+        token_num=len(token_dict),
+        head_num=5,
+        transformer_num=6,
+        embed_dim=50,
+        feed_forward_dim=50,
+        seq_len=20,
+        pos_num=20,
+        dropout_rate=0.05,
+    )
+    compile_model(model)
+    model.summary()
+
+    def _generator():
+        while True:
+            yield gen_batch_inputs(
+                sentence_pairs,
+                token_dict,
+                token_list,
+                seq_len=20,
+                mask_rate=0.3,
+                swap_sentence_rate=1.0,
+            )
+
+    model.fit_generator(
+        generator=_generator(),
+        steps_per_epoch=1000,
+        epochs=1,
+        validation_data=_generator(),
+        validation_steps=100,
+        callbacks=[
+            keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
+        ],
+    )
+
+    # Use the trained model
+    inputs, output_layer = get_model(
+        token_num=len(token_dict),
+        head_num=5,
+        transformer_num=6,
+        embed_dim=50,
+        feed_forward_dim=50,
+        seq_len=20,
+        pos_num=20,
+        dropout_rate=0.05,
+        training=False,      # The input layers and output layer will be returned if `training` is `False`
+        trainable=False,     # Whether the model is trainable. The default value is the same with `training`
+        output_layer_num=4,  # The number of layers whose outputs will be concatenated as a single output.
+                            # Only available when `training` is `False`.
+    )
+
+    new_model = Model(inputs, output_layer)
+    new_model.summary()
+
+    from keras_bert import extract_embeddings
+    texts = ['all work and no play', 'makes jack a dull boy~']
+    embeddings = extract_embeddings(new_model, texts, vocabs=token_dict)
+    print(embeddings)
     
-    executions = 100
-    accuracies_avg = np.array([0, 0, 0, 0, 0])
-    accuracies_best = np.array([0, 0, 0, 0, 0])
+    # executions = 100
+    # accuracies_avg = np.array([0, 0, 0, 0, 0])
+    # accuracies_best = np.array([0, 0, 0, 0, 0])
 
-    for i in range(0, executions):
+    # for i in range(0, executions):
         
-        print(('*' * 20))
-        print('Building model...')
-        sys.stdout.flush()
-        
-        #input pipeline
-        input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
-        embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')(input_actions)
-        #attention mechanism
-        bidirectional_gru = Bidirectional(GRU(50, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
-        dense_att_1 = Dense(50, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
-        dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
-        reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2) #so we can multiply it with embeddings
-        #apply the attention
-        apply_att = Multiply()([embedding_actions, reshape_att])
+    #     print(('*' * 20))
+    #     print('Building model...')
+    #     sys.stdout.flush()
 
-        lstm_actions = LSTM(512, return_sequences=False, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='lstm_actions')(apply_att)
-        dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(lstm_actions)
-        drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
-        dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
-        drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
-        output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
+    #     #input pipeline
+    #     input_actions = Input(shape=(INPUT_ACTIONS,), dtype='int32', name='input_actions')
+    #     embedding_actions = Embedding(input_dim=embedding_matrix.shape[0], output_dim=embedding_matrix.shape[1], weights=[embedding_matrix], input_length=INPUT_ACTIONS, trainable=True, name='embedding_actions')()
+    #     #attention mechanisminput_actions
+    #     bidirectional_gru = Bidirectional(GRU(50, input_shape=(INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH), name='bidirectional_gru'))(embedding_actions)
+    #     dense_att_1 = Dense(50, activation = 'tanh',name = 'dense_att_1')(bidirectional_gru)
+    #     dense_att_2 = Dense(INPUT_ACTIONS, activation = 'softmax',name = 'dense_att_2')(dense_att_1)
+    #     reshape_att = Reshape((INPUT_ACTIONS, 1), name = 'reshape_att')(dense_att_2) #so we can multiply it with embeddings
+    #     #apply the attention
+    #     apply_att = Multiply()([embedding_actions, reshape_att])
+    #     #convolutions
+    #     reshape = Reshape((INPUT_ACTIONS, ACTION_EMBEDDING_LENGTH, 1), name = 'reshape')(apply_att) #add channel dimension for the CNNs
+    #     #branching convolutions
+    #     ngram_2 = Convolution2D(200, (2, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_2')(reshape)
+    #     maxpool_2 = MaxPooling2D(pool_size=(INPUT_ACTIONS-2+1,1), name = 'pooling_2')(ngram_2)
+    #     ngram_3 = Convolution2D(200, (3, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_3')(reshape)
+    #     maxpool_3 = MaxPooling2D(pool_size=(INPUT_ACTIONS-3+1,1), name = 'pooling_3')(ngram_3)
+    #     ngram_4 = Convolution2D(200, (4, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_4')(reshape)
+    #     maxpool_4 = MaxPooling2D(pool_size=(INPUT_ACTIONS-4+1,1), name = 'pooling_4')(ngram_4)
+    #     ngram_5 = Convolution2D(200, (5, ACTION_EMBEDDING_LENGTH), padding='valid',activation='relu', name = 'conv_5')(reshape)
+    #     maxpool_5 = MaxPooling2D(pool_size=(INPUT_ACTIONS-5+1,1), name = 'pooling_5')(ngram_5)
+    #     #1 branch again
+    #     merged = Concatenate(axis=2)([maxpool_2, maxpool_3, maxpool_4, maxpool_5])
+    #     flatten = Flatten(name = 'flatten')(merged)
+    #     dense_1 = Dense(256, activation = 'relu',name = 'dense_1')(flatten)
+    #     drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
+    #     #action prediction
+    #     output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_1)
 
-        model = Model(input_actions, output_actions)
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
-        print((model.summary()))
-        sys.stdout.flush()
+    #     model = Model(input_actions, output_actions)
+    #     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'mse', 'mae'])
+    #     print((model.summary()))
+    #     sys.stdout.flush()
         
-        print(('*' * 20))
-        print('Training model...')    
-        sys.stdout.flush()
-        BATCH_SIZE = 128
-        checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_accuracy', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
-        early_stopping = EarlyStopping(monitor='val_loss', patience=50)
-        history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint, early_stopping])
+    #     print(('*' * 20))
+    #     print('Training model...')    
+    #     sys.stdout.flush()
+    #     BATCH_SIZE = 128
+    #     checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_accuracy', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
+    #     early_stopping = EarlyStopping(monitor='val_loss', patience=50)
+    #     history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint, early_stopping])
 
-        print(('*' * 20))
-        print('Plotting history...')
-        sys.stdout.flush()
-        plot_training_info(['accuracy', 'loss'], True, history.history)
+    #     print(('*' * 20))
+    #     print('Plotting history...')
+    #     sys.stdout.flush()
+    #     plot_training_info(['accuracy', 'loss'], True, history.history)
         
-        print(('*' * 20))
-        print('Evaluating best model...')
-        sys.stdout.flush()    
-        model = load_model(BEST_MODEL)
-        metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
-        print(metrics)
+    #     print(('*' * 20))
+    #     print('Evaluating best model...')
+    #     sys.stdout.flush()    
+    #     model = load_model(BEST_MODEL)
+    #     metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
+    #     print(metrics)
         
-        predictions = model.predict(X_test, BATCH_SIZE)
-        correct = [0] * 5
-        prediction_range = 5
-        for i, prediction in enumerate(predictions):
-            correct_answer = y_test[i].tolist().index(1)       
-            best_n = np.sort(prediction)[::-1][:prediction_range]
-            for j in range(prediction_range):
-                if prediction.tolist().index(best_n[j]) == correct_answer:
-                    for k in range(j,prediction_range):
-                        correct[k] += 1 
+    #     predictions = model.predict(X_test, BATCH_SIZE)
+    #     correct = [0] * 5
+    #     prediction_range = 5
+    #     for i, prediction in enumerate(predictions):
+    #         correct_answer = y_test[i].tolist().index(1)       
+    #         best_n = np.sort(prediction)[::-1][:prediction_range]
+    #         for j in range(prediction_range):
+    #             if prediction.tolist().index(best_n[j]) == correct_answer:
+    #                 for k in range(j,prediction_range):
+    #                     correct[k] += 1 
         
-        accuracies = []                   
-        for i in range(prediction_range):
-            print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
-            accuracies.append((correct[i] * 1.0) / len(y_test))
+    #     accuracies = []                   
+    #     for i in range(prediction_range):
+    #         print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
+    #         accuracies.append((correct[i] * 1.0) / len(y_test))
         
-        print(accuracies)
-        accuracies_best = np.max([accuracies_best, np.array(accuracies)], axis=0)
-        accuracies_avg = np.array(accuracies) + accuracies_avg
+    #     print(accuracies)
+    #     accuracies_best = np.max([accuracies_best, np.array(accuracies)], axis=0)
+    #     accuracies_avg = np.array(accuracies) + accuracies_avg
 
-        # https://www.tensorflow.org/api_docs/python/tf/keras/backend/clear_session
-        tf.keras.backend.clear_session()
+    #     # https://www.tensorflow.org/api_docs/python/tf/keras/backend/clear_session
+    #     tf.keras.backend.clear_session()
 
-        print(('************ FIN ************\n' * 3))
+    #     print(('************ FIN ************\n' * 3))
     
-    accuracies_avg = [x / executions for x in accuracies_avg]
+    # accuracies_avg = [x / executions for x in accuracies_avg]
 
-    print(('************ AVG ************\n'))
-    print(accuracies_avg)
-    print(('************ BEST ************\n'))
-    print(accuracies_best)
+    # print(('************ AVG ************\n'))
+    # print(accuracies_avg)
+    # print(('************ BEST ************\n'))
+    # print(accuracies_best)
 
-    print(('************ FIN MEDIA Y MEJOR RESULTADO ************\n' * 3))
+    # print(('************ FIN MEDIA Y MEJOR RESULTADO ************\n' * 3))
 
 if __name__ == "__main__":
     main(sys.argv)

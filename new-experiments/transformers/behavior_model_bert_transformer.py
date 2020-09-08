@@ -4,8 +4,11 @@ import h5py
 
 import tensorflow as tf
 
-from keras_transformer import get_model
-from keras_transformer import decode
+from keras_bert import get_base_dict, get_model, compile_model, gen_batch_inputs, get_custom_objects
+from keras_bert import Tokenizer as BertTokenizer
+from keras_bert import layers as KerasBertLayers
+from keras_bert import AdamWarmup, calc_train_steps
+
 from keras_transformer import get_custom_objects as get_encoder_custom_objects
 
 from keras.callbacks import ModelCheckpoint, EarlyStopping
@@ -214,39 +217,54 @@ def main(argv):
     print((X_train.shape))
     print((y_train.shape))
 
-    token_dict = {
-        '<PAD>': 0,
-        '<START>': 1,
-        '<END>': 2,
-    }
-
-    X_train = X_train.flatten()
-    X_test = X_test.flatten()
-
-    X_train = list(map(str,X_train))
-    X_test = list(map(str,X_test))
-
-    for token in X_train:
-        if token not in token_dict:
-            token_dict[token] = len(token_dict)
+    action_seq_pairs_train = []
+    i = 0
+    while i < len(X_train) - 1:
+        action_seq_pairs_train.append([list(X_train[i]), list(X_train[i+1])])
+        i += 2
+    
+    token_dict = get_base_dict()
+    for pairs in action_seq_pairs_train:
+        for token in pairs[0] + pairs[1]:
+            if token not in token_dict:
+                token_dict[token] = len(token_dict)
 
     print(token_dict)
 
-    encoder_inputs_no_padding = []
-    encoder_inputs, decoder_inputs, decoder_outputs = [], [], []
-    for i in range(1, len(X_train) - 1):
-        encode_tokens, decode_tokens = X_train[:i], X_train[i:]
-        encode_tokens = ['<START>'] + encode_tokens + ['<END>'] + ['<PAD>'] * (len(X_train) - len(encode_tokens))
-        output_tokens = decode_tokens + ['<END>', '<PAD>'] + ['<PAD>'] * (len(X_train) - len(decode_tokens))
-        decode_tokens = ['<START>'] + decode_tokens + ['<END>'] + ['<PAD>'] * (len(X_train) - len(decode_tokens))
-        encode_tokens = list(map(lambda x: token_dict[x], encode_tokens))
-        decode_tokens = list(map(lambda x: token_dict[x], decode_tokens))
-        output_tokens = list(map(lambda x: [token_dict[x]], output_tokens))
-        encoder_inputs_no_padding.append(encode_tokens[:i + 2])
-        encoder_inputs.append(encode_tokens)
-        decoder_inputs.append(decode_tokens)
-        decoder_outputs.append(output_tokens)
+    def transform_data(X_train, X_test, y_train, y_test):
+        tokenizer = BertTokenizer(token_dict)
 
+        indices_train, labels_train = [], []
+        indices_test, labels_test = [], []
+
+        for i in range(0, len(X_train)):
+            ids, segments = tokenizer.encode(str(X_train[i]).replace("[", "").replace("]", ""), max_len=5)
+            indices_train.append(ids)
+            labels_train.append(y_train[i])
+        items = list(zip(indices_train, labels_train))
+        np.random.shuffle(items)
+        indices_train, labels_train = zip(*items)
+        indices_train = np.array(indices_train)
+        mod = indices_train.shape[0] % BATCH_SIZE
+        if mod > 0:
+            indices_train, labels_train = indices_train[:-mod], labels_train[:-mod]
+        
+        for i in range(0, len(X_test)):
+            ids, segments = tokenizer.encode(str(X_test[i]).replace("[", "").replace("]", ""), max_len=5)
+            indices_test.append(ids)
+            labels_test.append(y_test[i])
+        items = list(zip(indices_test, labels_test))
+        np.random.shuffle(items)
+        indices_test, labels_test = zip(*items)
+        indices_test = np.array(indices_test)
+        mod = indices_test.shape[0] % BATCH_SIZE
+        if mod > 0:
+            indices_test, labels_test = indices_test[:-mod], labels_test[:-mod]
+        
+        return [indices_train, np.zeros_like(indices_train)], np.array(labels_train), [indices_test, np.zeros_like(indices_test)], np.array(labels_test)
+
+    X_train, y_train, X_test, y_test = transform_data(X_train, X_test, y_train, y_test)
+    
     executions = 100
     accuracies_avg = np.array([0, 0, 0, 0, 0])
     accuracies_best = np.array([0, 0, 0, 0, 0])
@@ -259,46 +277,117 @@ def main(argv):
 
         model = get_model(
             token_num=len(token_dict),
-            embed_dim=50,
-            encoder_num=3,
-            decoder_num=2,
             head_num=5,
-            hidden_dim=50,
-            attention_activation='relu',
-            feed_forward_activation='relu',
+            transformer_num=6,
+            embed_dim=50,
+            feed_forward_dim=50,
+            seq_len=5,
+            pos_num=20,
             dropout_rate=0.05,
-            embed_weights=np.random.random((len(token_dict), 50)),
         )
-
-        model.compile(
-            optimizer='adam',
-            loss='sparse_categorical_crossentropy',
-        )
-
+        # compile_model(model)
         model.summary()
 
-        model.fit(
-            x=[np.asarray(encoder_inputs * 1000), np.asarray(decoder_inputs * 1000)],
-            y=np.asarray(decoder_outputs * 1000),
-            epochs=5,
+        # def _generator():
+        #     while True:
+        #         yield gen_batch_inputs(
+        #             action_seq_pairs_train,
+        #             token_dict,
+        #             token_list,
+        #             seq_len=5,
+        #             mask_rate=0.3,
+        #             swap_sentence_rate=1.0,
+        #         )
+
+        # model.fit_generator(
+        #     generator=_generator(),
+        #     steps_per_epoch=1000,
+        #     epochs=1,
+        #     validation_data=_generator(),
+        #     validation_steps=100,
+        #     callbacks=[
+        #         keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
+        #     ],
+        # )
+
+        # from keras_bert import extract_embeddings
+        # def convert_list_of_int_to_str(lst):
+        #     lst = [str(int) for i in lst]
+        #     return ' '.join(lst)
+        # actions_seqs = [convert_list_of_int_to_str([6, 6, 1, 1, 4]), convert_list_of_int_to_str([6, 6, 1, 1, 9])]
+        # embeddings = extract_embeddings(new_model, actions_seqs, vocabs=token_dict)
+        # print(embeddings)
+        
+        inputs = model.inputs[:2]
+
+        dense = model.get_layer('NSP-Dense').output
+        dense_1 = Dense(1024, activation = 'relu',name = 'dense_1')(dense)
+        drop_1 = Dropout(0.8, name = 'drop_1')(dense_1)
+        dense_2 = Dense(1024, activation = 'relu',name = 'dense_2')(drop_1)
+        drop_2 = Dropout(0.8, name = 'drop_2')(dense_2)
+        output_actions = Dense(total_actions, activation='softmax', name='main_output')(drop_2)
+
+        train_x = np.random.standard_normal((1024, 100))
+
+        total_steps, warmup_steps = calc_train_steps(
+            num_example=train_x.shape[0],
+            batch_size=32,
+            epochs=10,
+            warmup_proportion=0.1,
         )
 
-        decoded = decode(
-            model,
-            encoder_inputs_no_padding,
-            start_token=token_dict['<START>'],
-            end_token=token_dict['<END>'],
-            pad_token=token_dict['<PAD>'],
-            max_len=5,
-        )
-        token_dict_rev = {v: k for k, v in token_dict.items()}
-        for i in range(len(decoded)):
-            print(' '.join(map(lambda x: token_dict_rev[x], decoded[i][1:-1])))
+        optimizer = AdamWarmup(total_steps, warmup_steps, lr=1e-3, min_lr=1e-5)
+
+        model = Model(inputs, output_actions)
+        model.compile(loss='sparse_categorical_crossentropy', optimizer=optimizer, metrics=['accuracy', 'mse', 'mae'])
+        model.summary()
+        
+        print(('*' * 20))
+        print('Training model...')    
+        sys.stdout.flush()
+        checkpoint = ModelCheckpoint(BEST_MODEL, monitor='val_accuracy', verbose=0, save_best_only=True, save_weights_only=False, mode='auto')
+        early_stopping = EarlyStopping(monitor='val_loss', patience=50)
+        history = model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=1000, validation_data=(X_test, y_test), shuffle=True, callbacks=[checkpoint, early_stopping])
+
+        print(('*' * 20))
+        print('Plotting history...')
+        sys.stdout.flush()
+        plot_training_info(['accuracy', 'loss'], True, history.history)
+        
+        print(('*' * 20))
+        print('Evaluating best model...')
+        sys.stdout.flush()
+        custom_objects = get_encoder_custom_objects()
+        custom_objects['TokenEmbedding'] = KerasBertLayers.TokenEmbedding
+        custom_objects['PositionEmbedding'] = PositionEmbedding
+        custom_objects['Extract'] = KerasBertLayers.Extract
+        custom_objects['AdamWarmup'] = AdamWarmup
+        model = load_model(BEST_MODEL, custom_objects=custom_objects)
+        metrics = model.evaluate(X_test, y_test, batch_size=BATCH_SIZE)
+        print(metrics)
+        
+        predictions = model.predict(X_test, BATCH_SIZE)
+        correct = [0] * 5
+        prediction_range = 5
+        for i, prediction in enumerate(predictions):
+            correct_answer = y_test[i]     
+            best_n = np.sort(prediction)[::-1][:prediction_range]
+            for j in range(prediction_range):
+                if prediction.tolist().index(best_n[j]) == correct_answer:
+                    for k in range(j,prediction_range):
+                        correct[k] += 1 
+        
+        accuracies = []                   
+        for i in range(prediction_range):
+            print(('%s prediction accuracy: %s' % (i+1, (correct[i] * 1.0) / len(y_test))))
+            accuracies.append((correct[i] * 1.0) / len(y_test))
+        
+        print(accuracies)
+        accuracies_best = np.max([accuracies_best, np.array(accuracies)], axis=0)
+        accuracies_avg = np.array(accuracies) + accuracies_avg
 
         # https://www.tensorflow.org/api_docs/python/tf/keras/backend/clear_session
         tf.keras.backend.clear_session()
-
-        break
 
         print(('************ FIN ************\n' * 3))
     

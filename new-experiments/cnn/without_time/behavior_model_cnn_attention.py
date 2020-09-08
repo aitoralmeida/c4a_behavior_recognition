@@ -34,9 +34,13 @@ UNIQUE_TIME_ACTIONS = DIR + 'unique_time_actions.json'
 # Action vectors
 #ACTION_VECTORS = DIR + 'actions_vectors.json'
 # Word2Vec model
-WORD2VEC_MODEL = DIR + 'actions.model'
+WORD2VEC_MODEL = DIR + 'actions_w4.model'
 # Word2Vec model taking into account time periods
 WORD2VEC_TIME_MODEL = DIR + 'actions_time.model'
+# Word2Vect vectors file
+WORD2VEC_VECTOR_FILE = DIR + 'actions_w5_enhanced.vector'
+# If vector are read from vector file
+WORD2VEC_FROM_VECTOR_FILE = True
 
 #number of input actions for the model
 INPUT_ACTIONS = 5
@@ -201,7 +205,37 @@ def create_embedding_matrix(tokenizer):
     print (unknown_words)
     
     return embedding_matrix
-      
+
+"""
+Function to create the embedding matrix from a txt file, which will be used to initialize
+the embedding layer of the network
+Input:
+    tokenizer: instance of Tokenizer class used for action/index convertion
+Output:
+    embedding_matrix: matrix with the embedding vectors for each action
+    
+"""
+def create_embedding_matrix_from_file(tokenizer):
+    data = pd.read_csv(WORD2VEC_VECTOR_FILE, sep=",", header=None)
+    data.columns = ["action", "vector"]
+    action_index = tokenizer.word_index
+    embedding_matrix = np.zeros((len(action_index) + 1, ACTION_EMBEDDING_LENGTH))
+    unknown_words = {}    
+    for action, i in list(action_index.items()):
+        try:
+            # print(data[data['action'] == action]['vector'].values[0])
+            embedding_vector = np.fromstring(data[data['action'] == action]['vector'].values[0], dtype=float, sep=' ')
+            # print(embedding_vector)
+            embedding_matrix[i] = embedding_vector            
+        except:
+            if action in unknown_words:
+                unknown_words[action] += 1
+            else:
+                unknown_words[action] = 1
+    print(("Number of unknown tokens: " + str(len(unknown_words))))
+    print (unknown_words)
+    
+    return embedding_matrix      
 
 def main(argv):
     print(('*' * 20))
@@ -227,7 +261,10 @@ def main(argv):
     # in the weights matrix of the Embedding layer of the network input
     X, y, tokenizer = prepare_x_y(df_dataset, unique_actions)    
     # Create the embedding matrix for the embedding layer initialization
-    embedding_matrix = create_embedding_matrix(tokenizer)
+    if WORD2VEC_FROM_VECTOR_FILE:
+        embedding_matrix = create_embedding_matrix_from_file(tokenizer)
+    else:
+        embedding_matrix = create_embedding_matrix(tokenizer)
 
     #divide the examples in training and validation
     total_examples = len(X)

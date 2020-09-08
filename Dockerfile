@@ -7,18 +7,11 @@ RUN apt-get update && apt-get upgrade -y --allow-unauthenticated && \
     python3-dev \
     python3-pip
 
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip && python3 -m pip install --upgrade pip
 RUN pip3 install -U setuptools
-RUN pip3 install -U numpy==1.16.0
-RUN pip3 install -U pandas
-RUN pip3 install -U matplotlib
-RUN pip3 install -U networkx
-RUN pip3 install -U sklearn
-RUN pip3 install -U keras keras-bert keras-transformer keras-self-attention
+RUN pip3 install -U keras keras-bert keras-transformer keras_pos_embd
 RUN pip3 install -U tensorflow imutils
-RUN pip3 install -U Pillow
-RUN pip3 install -U opencv-python
-RUN pip3 install -U gensim wheel twine nose pycodestyle coverage
+RUN pip3 install -U gensim matplotlib sklearn pandas tqdm
 
 RUN ["mkdir", "results"]
 

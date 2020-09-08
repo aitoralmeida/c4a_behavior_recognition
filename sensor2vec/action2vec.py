@@ -5,7 +5,7 @@ Created on Mon Oct 24 14:25:39 2016
 @author: aitor
 """
 
-#USAGE: python action2vec.py actions.txt actions.model actions.vector
+#USAGE: python3 action2vec.py kasteren_dataset/actions.txt /results/actions_w1.model /results/actions_w1.vector
  
 import logging
 import os.path
@@ -29,11 +29,11 @@ if __name__ == '__main__':
         sys.exit(1)
     inp, outp1, outp2 = sys.argv[1:4]
     # avg activity lenght = 3.69590167482
-    model = Word2Vec(LineSentence(inp), size=50, window=5, min_count=0,
+    model = Word2Vec(LineSentence(inp), size=50, window=5, min_count=0, iter=100,
             workers=multiprocessing.cpu_count())
  
     # trim unneeded model memory = use(much) less RAM
     #model.init_sims(replace=True)
     model.save(outp1)
-    model.save_word2vec_format(outp2, binary=False)
+    model.wv.save_word2vec_format(outp2, binary=False)
     print('FIN')  

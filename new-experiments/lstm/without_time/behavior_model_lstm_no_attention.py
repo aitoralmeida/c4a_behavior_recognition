@@ -34,7 +34,7 @@ UNIQUE_TIME_ACTIONS = DIR + 'unique_time_actions.json'
 # Action vectors
 #ACTION_VECTORS = DIR + 'actions_vectors.json'
 # Word2Vec model
-WORD2VEC_MODEL = DIR + 'actions.model'
+WORD2VEC_MODEL = DIR + 'actions_w_1.model'
 # Word2Vec model taking into account time periods
 WORD2VEC_TIME_MODEL = DIR + 'actions_time.model'
 
